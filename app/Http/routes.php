@@ -11,6 +11,14 @@
 |
 */
 
+Route::any('/hook','Hook@index');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/prappo','Run@test');
+Route::auth();
+
+Route::get('/facebook/connect','FacebookController@fbConnect');
+Route::resource('/facebook','FacebookController');
+Route::resource('/settings','SettingsController');
+Route::get('/home', 'HomeController@index');
