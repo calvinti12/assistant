@@ -21,4 +21,6 @@ Route::auth();
 Route::get('/facebook/connect','FacebookController@fbConnect');
 Route::resource('/facebook','FacebookController');
 Route::resource('/settings','SettingsController');
+Route::resource('/comment','Comments');
+Route::resource('/message','Messages');
 Route::get('/home', 'HomeController@index');
