@@ -31,7 +31,7 @@ class Run extends Controller
             $postId = isset($input['entry'][0]['changes'][0]['value']['postId']) ? $input['entry'][0]['changes'][0]['value']['post_id']:"";
             $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item']:"";
             $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb']:"";
-
+            $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id']:"";
             if (!FacebookPages::where('pageId', $input['entry'][0]['changes'][0]['value']['sender_id'])->exists()) {
                 $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : "";
                 $sender_id = isset($input['entry'][0]['changes'][0]['value']['sender_id']) ? $input['entry'][0]['changes'][0]['value']['sender_id'] : "";
@@ -54,6 +54,8 @@ class Run extends Controller
                     $facebook = $fbObject->facebook;
                     $commentId = $input['entry'][0]['changes'][0]['value']['comment_id'];
                     $parentId = $input['entry'][0]['changes'][0]['value']['parent_id'];
+                    $explodePostId = explode("_",$fbPostId);
+                    $pId = $explodePostId[0];
 
                     /*
                      * trying to reply

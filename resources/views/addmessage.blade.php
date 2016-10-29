@@ -26,11 +26,13 @@
 
                                     </div>
                                 </div>
+                            </section>
                         </div>
+
 
                     </div>
                 </div>
-                </section>
+
             </div>
             <div class="col-md-8">
                 <div class="panel panel-default">
@@ -61,7 +63,7 @@
                             <div class="form-group">
                                 <label for="comment" class="col-md-4 control-label">Reply </label>
                                 <div class="col-md-6">
-                                    <textarea id="reply" class="form-control" rows="3"></textarea>
+                                    <textarea id="answer" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -92,7 +94,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="update" class="btn btn-primary">
+                                    <button id="add" class="btn btn-primary">
                                         <i class="fa fa-btn fa-envelope"></i> Add Conversation
                                     </button>
                                 </div>
@@ -144,6 +146,41 @@
             $('#ans').html($(this).val());
         });
 
+        $('#add').click(function () {
+            if ($('#question').val().length <= 0) {
+                return swal("Attention !", "Please enter comment");
+            }
+            if ($('#answer').val().length <= 0) {
+                return swal("Attention !", "Please enter reply against comment");
+            }
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/message')}}',
+                data: {
+                    'pageId': $('#pageId').val(),
+                    'question': $('#question').val(),
+                    'answer': $('#answer').val(),
+                    'image': $('#image').val(),
+                    'video': $('#video').val(),
+                    'audio': $('#audio').val(),
+                    '_token': '{{csrf_token()}}'
+                },
+                success: function (data) {
+                    if (data == 'success') {
+                        swal('Success', 'Messag added !', 'success');
+                        location.reload();
+                    } else {
+                        swal('Error', data, 'error');
+                        console.log(data);
+
+                    }
+                },
+                error: function (data) {
+                    swal('Error', 'Something went wrong , please check the console message', 'error');
+                    console.log(data.responseText);
+                }
+            });
+        })
 
     </script>
 @endsection

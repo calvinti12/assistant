@@ -57,6 +57,23 @@
 
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label"></label>
+                                <div class="col-md-6">
+                                    <label class="control-label"><input type="checkbox" id="specific"> Reply for specific post</label>
+
+                                </div>
+                            </div>
+
+                            <div id="postIdDiv" class="form-group">
+                                <label for="postId" class="col-md-4 control-label">Post ID </label>
+                                <div class="col-md-6">
+                                    <input type="text" id="postId" class="form-control">
+
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="question" class="col-md-4 control-label">Comment </label>
                                 <div class="col-md-6">
@@ -68,7 +85,7 @@
                             <div class="form-group">
                                 <label for="comment" class="col-md-4 control-label">Reply </label>
                                 <div class="col-md-6">
-                                    <textarea id="reply" class="form-control" rows="3"></textarea>
+                                    <textarea id="answer" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -111,6 +128,8 @@
 
 @section('js')
     <script>
+        $('#postIdDiv').hide();
+        var specified = "no";
 
         $("#uploadimage").on('submit', (function (e) {
             e.preventDefault();
@@ -139,14 +158,29 @@
             });
         }));
         $('#add').click(function () {
+            if(specified == "yes"){
+                if($('#postId').val().length <= 0){
+                    return swal("Attention !","Please enter post ID");
+                }
+            }
+
+            if($('#question').val().length <=0){
+                return swal("Attention !","Please enter comment");
+            }
+            if($('#answer').val().length <= 0){
+                return swal("Attention !","Please enter reply against comment");
+            }
             $.ajax({
                 type: 'POST',
                 url: '{{url('/comment')}}',
                 data: {
-                    '_token': '{{csrf_token()}}',
+                    '_token':'{{csrf_token()}}',
                     'pageId': $('#pageId').val(),
-                    'comment': $('#comment').val(),
+                    'question': $('#question').val(),
+                    'answer': $('#answer').val(),
                     'link': $('#link').val(),
+                    'specified':specified,
+                    'postId':$('#postId').val(),
                     'type': $('#type').val()
                 },
                 success: function (data) {
@@ -158,7 +192,8 @@
                     }
                 },
                 error: function (data) {
-                    swal('Error', data, 'error');
+                    swal('Error', "Something went wrong please check console message", 'error');
+                    console.log(data);
                 }
             })
         });
@@ -166,9 +201,19 @@
             $('#userComment').html($(this).val());
         })
 
-        $('#reply').on('keyup',function () {
+        $('#answer').on('keyup',function () {
             $('#pageComment').html($(this).val());
         })
+
+        $("#specific").change(function() {
+            if(this.checked) {
+                $('#postIdDiv').show(200);
+                specified = "yes";
+            }else{
+                $('#postIdDiv').hide(200);
+                specified = "no";
+            }
+        });
 
     </script>
 @endsection

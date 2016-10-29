@@ -23,9 +23,11 @@ class SettingsSeeder extends Seeder
             'key' => 'exception',
             'value'=>'yes'
         ]);
+
+
         DB::table('settings')->insert([
-            'key' => 'exceptionMsg',
-            'value'=>'For more details go to '
+            'key' => 'spamDefender',
+            'value'=>'on'
         ]);
     }
 }

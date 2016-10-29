@@ -17,6 +17,7 @@ class CreateFacebookPagesTable extends Migration
             $table->string('pageName')->nullable();
             $table->string('pageId');
             $table->string('pageToken');
+            $table->string('exceptionMessage');
             $table->timestamps();
         });
     }

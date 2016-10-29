@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\FacebookPages;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class Comments extends Controller
+class SpamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class Comments extends Controller
      */
     public function index()
     {
-
+        return view('spam');
     }
 
     /**
@@ -26,39 +25,24 @@ class Comments extends Controller
      */
     public function create()
     {
-        $pages = FacebookPages::all();
-        return view('addcomment', compact('pages'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        try {
-            $comment = new \App\Comments();
-            $comment->question = $request->question;
-            $comment->answer = $request->answer;
-            $comment->pageId = $request->pageId;
-            $comment->type = $request->type;
-            if ($request->link != "") {
-                $comment->link = $request->link;
-            }
-            $comment->save();
-
-            return "success";
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,7 +53,7 @@ class Comments extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +64,8 @@ class Comments extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,7 +76,7 @@ class Comments extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

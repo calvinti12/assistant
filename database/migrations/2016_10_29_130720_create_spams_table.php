@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessagesTable extends Migration
+class CreateSpamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('spams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('question');
-            $table->string('answer');
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
-            $table->string('audio')->nullable();
+            $table->string('spamWords');
+            $table->string('listedUrls');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('messages');
+        Schema::drop('spams');
     }
 }
