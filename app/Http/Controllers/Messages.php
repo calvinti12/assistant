@@ -16,7 +16,8 @@ class Messages extends Controller
      */
     public function index()
     {
-
+        $datas = \App\Messages::all();
+        return view('messagelist', compact('datas'));
     }
 
     /**
@@ -27,24 +28,52 @@ class Messages extends Controller
     public function create()
     {
         $pages = FacebookPages::all();
-        return view('addmessage',compact('pages'));
+        return view('addmessage', compact('pages'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $image = null;
+        $video = null;
+        $audio = null;
+        if ($request->image != "") {
+            $image = $request->image;
+        } elseif ($request->video != "") {
+            $video = $request->video;
+        } elseif ($request->audio == "") {
+            $audio = $request->video;
+
+        }
+
+        try {
+            $message = new \App\Messages();
+            $message->pageId = $request->pageId;
+            $message->question = $request->question;
+            $message->answer = $request->answer;
+            $message->image = $image;
+            $message->video = $video;
+            $message->audio = $audio;
+            $message->save();
+            return "success";
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
+
+
+
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +84,7 @@ class Messages extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +95,8 @@ class Messages extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,7 +107,7 @@ class Messages extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

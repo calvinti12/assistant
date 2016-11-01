@@ -28,10 +28,10 @@ class Run extends Controller
 
             $pageId = $input['entry'][0]['id'];
             $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
-            $postId = isset($input['entry'][0]['changes'][0]['value']['postId']) ? $input['entry'][0]['changes'][0]['value']['post_id']:"";
-            $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item']:"";
-            $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb']:"";
-            $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id']:"";
+            $postId = isset($input['entry'][0]['changes'][0]['value']['postId']) ? $input['entry'][0]['changes'][0]['value']['post_id'] : "";
+            $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : "";
+            $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : "";
+            $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id'] : "";
             if (!FacebookPages::where('pageId', $input['entry'][0]['changes'][0]['value']['sender_id'])->exists()) {
                 $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : "";
                 $sender_id = isset($input['entry'][0]['changes'][0]['value']['sender_id']) ? $input['entry'][0]['changes'][0]['value']['sender_id'] : "";
@@ -54,14 +54,47 @@ class Run extends Controller
                     $facebook = $fbObject->facebook;
                     $commentId = $input['entry'][0]['changes'][0]['value']['comment_id'];
                     $parentId = $input['entry'][0]['changes'][0]['value']['parent_id'];
-                    $explodePostId = explode("_",$fbPostId);
+                    $explodePostId = explode("_", $fbPostId);
                     $pId = $explodePostId[0];
 
                     /*
                      * trying to reply
                      * */
 
+
                     try {
+                        if (SettingsController::get('spamDefender') == "on") {
+                            /*
+                                 * Detect Black listed words
+                                 *
+                                 * */
+                            $words = explode(',', SettingsController::get('words'));
+                            foreach ($words as $word) {
+                                if (strpos(strtolower($message), strtolower($word)) !== false) {
+                                    $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                    exit;
+                                }
+                            }
+
+                            /*
+                             * Detect URLs
+                             *
+                             * */
+                            if (SpamController::isUrl($message)) {
+                                $facebook->post($commentId . '/comments', ['message' => 'You posted Link'], SettingsController::getPageToken($pageId));
+                            } else {
+                                $facebook->post($commentId . '/comments', ['message' => 'Not link'], SettingsController::getPageToken($pageId));
+                            }
+
+
+                            if (SettingsController::get('autoDelete') == "on") {
+
+
+                            }
+                            /*
+                             * Action after detecting spam*/
+                            exit;
+                        }
                         $response = $facebook->post($commentId . '/comments', ['message' => 'Hi ' . $sender_name . "\nYou said " . $message, 'attachment_url' => ''], SettingsController::getPageToken($pageId));
                         print_r($response->getDecodedBody());
                     } catch (\Exception $exception) {
@@ -104,17 +137,15 @@ class Run extends Controller
 
     public function test()
     {
-
-
-        $date = date('Y-m-d h:i:s','1477595389331');
-//        echo "New York ". $date;
-
-        echo SettingsController::convertTime($date, true)."<br>";
+        $spam = new SpamController();
+        $url = "Here is another funny site ";
+//        echo "Cleaned: " . $spam->cleaner($url);
+        var_dump(SpamController::isUrl($url));
     }
 
-    public static function fire($jsonData)
+    public static function fire($jsonData, $pageId)
     {
-        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . SettingsController::getToken();
+        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . SettingsController::getPageToken($pageId);
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1);

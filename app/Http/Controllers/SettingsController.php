@@ -103,7 +103,19 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        if($id=='spam'){
+            try{
+                Settings::where('key','autoDelete')->update(['value'=>$request->autoDelete]);
+                Settings::where('key','words')->update(['value'=>$request->blackList]);
+                Settings::where('key','urls')->update(['value'=>$request->whiteList]);
+                Settings::where('key','spamDefender')->update(['value'=>$request->spamDefender]);
+                return "success";
+            }
+            catch (\Exception $exception){
+                return $exception->getMessage();
+            }
+        }
     }
 
     /**

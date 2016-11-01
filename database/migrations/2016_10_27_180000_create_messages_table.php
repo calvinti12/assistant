@@ -14,6 +14,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('pageId');
             $table->string('question');
             $table->string('answer');
             $table->string('image')->nullable();

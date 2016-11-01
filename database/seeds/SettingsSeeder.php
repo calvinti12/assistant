@@ -15,6 +15,8 @@ class SettingsSeeder extends Seeder
         DB::table('settings')->insert(['key' => 'fbAppId']);
         DB::table('settings')->insert(['key' => 'fbAppToken']);
         DB::table('settings')->insert(['key' => 'fbAppSec']);
+        DB::table('settings')->insert(['key' => 'words']);
+        DB::table('settings')->insert(['key' => 'urls']);
         DB::table('settings')->insert([
             'key' => 'match',
             'value'=>'75'
@@ -24,9 +26,12 @@ class SettingsSeeder extends Seeder
             'value'=>'yes'
         ]);
 
-
         DB::table('settings')->insert([
             'key' => 'spamDefender',
+            'value'=>'on'
+        ]);
+        DB::table('settings')->insert([
+            'key' => 'autoDelete',
             'value'=>'on'
         ]);
     }

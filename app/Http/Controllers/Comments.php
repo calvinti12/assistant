@@ -16,7 +16,8 @@ class Comments extends Controller
      */
     public function index()
     {
-
+        $datas = \App\Comments::all();
+        return view('commentlist',compact('datas'));
     }
 
     /**
@@ -40,9 +41,11 @@ class Comments extends Controller
     {
         try {
             $comment = new \App\Comments();
+            $comment->pageId = $request->pageId;
             $comment->question = $request->question;
             $comment->answer = $request->answer;
-            $comment->pageId = $request->pageId;
+            $comment->specified = $request->specified;
+            $comment->postId = $request->postId;
             $comment->type = $request->type;
             if ($request->link != "") {
                 $comment->link = $request->link;
