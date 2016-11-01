@@ -14,10 +14,10 @@ class CreateFacebookPagesTable extends Migration
     {
         Schema::create('facebook_pages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pageName')->nullable();
+            $table->string('pageName');
             $table->string('pageId');
             $table->string('pageToken');
-            $table->string('exceptionMessage');
+            $table->string('exceptionMessage')->nullable();
             $table->timestamps();
         });
     }
