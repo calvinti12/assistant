@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Comments;
 use App\FacebookPages;
 use App\Notification;
 use App\Sender;
@@ -32,6 +33,7 @@ class Run extends Controller
             $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : "";
             $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : "";
             $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id'] : "";
+
             if (!FacebookPages::where('pageId', $input['entry'][0]['changes'][0]['value']['sender_id'])->exists()) {
                 $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : "";
                 $sender_id = isset($input['entry'][0]['changes'][0]['value']['sender_id']) ? $input['entry'][0]['changes'][0]['value']['sender_id'] : "";
@@ -57,59 +59,119 @@ class Run extends Controller
                     $explodePostId = explode("_", $fbPostId);
                     $pId = $explodePostId[0];
 
-                    /*
-                     * trying to reply
-                     * */
-
 
                     try {
                         if (SettingsController::get('spamDefender') == "on") {
+
+
                             /*
-                                 * Detect Black listed words
+                             * Detect Black listed words
+                             *
+                             * */
+
+                            if (SettingsController::get('autoDelete') == "on") {
+                                $words = explode(',', SettingsController::get('words'));
+                                foreach ($words as $word) {
+                                    if (strpos(strtolower($message), strtolower($word)) !== false) {
+                                        $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                        exit;
+                                    }
+                                }
+
+
+                                /*
+                                 * Detect URLs
                                  *
                                  * */
-                            $words = explode(',', SettingsController::get('words'));
-                            foreach ($words as $word) {
-                                if (strpos(strtolower($message), strtolower($word)) !== false) {
-                                    $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
-                                    exit;
+
+                                if (SpamController::isUrl($message)) {
+                                    $urls = explode(',', SettingsController::get('urls'));
+                                    foreach ($urls as $url) {
+                                        if (strpos(strtolower($message), strtolower($url)) !== false) {
+
+                                        } else {
+                                            $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                            exit;
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                            /*
+                             * Action if comments are not spam
+                             *
+                             * */
+
+                            foreach (Comments::all() as $comment) {
+
+                                similar_text( strtolower($message),strtolower($comment->question), $match);
+                                if ($match >= SettingsController::get('match')) {
+                                    echo "Matching ".$match;
+                                    /*
+                                     * If this is for public comment
+                                     *
+                                     * */
+                                    if($comment->type == "public"){
+                                        /*
+                                         * trying to reply
+                                         *
+                                         * */
+
+                                        try {
+                                            if($comment->link != null){
+                                                echo "comment reply without image";
+                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
+                                            }else{
+                                                echo "comment reply with image";
+                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
+                                            }
+                                            exit;
+
+                                        } catch (\Exception $exception) {
+
+                                            /*
+                                            * If can't reply then try to reply via parent ID
+                                            *
+                                            * */
+
+                                                try{
+                                                    if($comment->link != null){
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
+                                                    }else{
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
+                                                    }
+                                                    exit;
+                                                }catch (\Exception $exception){
+                                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
+                                                    exit;
+                                                }
+
+
+
+                                        }
+                                    }
+
+                                }else{
+
+                                    /*
+                                     * Exception message
+                                     *
+                                     * */
+                                    $facebook->post($parentId . '/comments', ['message' => "matching $match","attachment_url"=>"http://img.freepik.com/free-vector/company-flyer-with-stripes_1017-3864.jpg"], SettingsController::getPageToken($pageId));
+
                                 }
                             }
 
-                            /*
-                             * Detect URLs
-                             *
-                             * */
-                            if (SpamController::isUrl($message)) {
-                                $facebook->post($commentId . '/comments', ['message' => 'You posted Link'], SettingsController::getPageToken($pageId));
-                            } else {
-                                $facebook->post($commentId . '/comments', ['message' => 'Not link'], SettingsController::getPageToken($pageId));
-                            }
 
-
-                            if (SettingsController::get('autoDelete') == "on") {
-
-
-                            }
-                            /*
-                             * Action after detecting spam*/
                             exit;
+
                         }
-                        $response = $facebook->post($commentId . '/comments', ['message' => 'Hi ' . $sender_name . "\nYou said " . $message, 'attachment_url' => ''], SettingsController::getPageToken($pageId));
-                        print_r($response->getDecodedBody());
+
+
                     } catch (\Exception $exception) {
 
-                        /*
-                         * If can't reply then try to reply via parent ID
-                         *
-                         * */
-
-                        try {
-                            $response = $facebook->post($parentId . '/comments', ['message' => 'Hi ' . $sender_name . "\nYou said " . $message], SettingsController::getPageToken($pageId));
-                            print_r($response->getDecodedBody());
-                        } catch (\Exception $e) {
-                            return $e->getMessage();
-                        }
 
                     }
                 }
@@ -137,10 +199,15 @@ class Run extends Controller
 
     public function test()
     {
-        $spam = new SpamController();
-        $url = "Here is another funny site ";
-//        echo "Cleaned: " . $spam->cleaner($url);
-        var_dump(SpamController::isUrl($url));
+        $shortCodes = [
+            '{{sender}}'=> "prappo prince",
+            '{{page_name}}' => "Sinat's shop"
+        ];
+
+        $message = "Hi sender welcome to {{page_name}}";
+        echo strtr($message,$shortCodes);
+
+
     }
 
     public static function fire($jsonData, $pageId)
@@ -167,6 +234,8 @@ class Run extends Controller
         } catch (\Exception $exception) {
         }
     }
+
+
 
 
 }

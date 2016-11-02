@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\FacebookPages;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class SenderController extends Controller
+class ShortCodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -83,15 +82,5 @@ class SenderController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public static function processText($message,$sender_name,$pageId){
-        $shortCodes = [
-            '{{sender}}'=> $sender_name,
-            '{{page_name}}' => FacebookPages::where('pageId',$pageId)->value('pageName')
-        ];
-
-        return strtr($message,$shortCodes);
-
     }
 }
