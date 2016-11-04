@@ -14,6 +14,8 @@ class CreateShortCodesTable extends Migration
     {
         Schema::create('short_codes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
+            $table->string('value');
             $table->timestamps();
         });
     }

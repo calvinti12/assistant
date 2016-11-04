@@ -24,4 +24,5 @@ Route::resource('/settings','SettingsController');
 Route::resource('/comment','Comments');
 Route::resource('/message','Messages');
 Route::resource('/spam','SpamController');
+Route::resource('/code','ShortCodeController');
 Route::get('/home', 'HomeController@index');

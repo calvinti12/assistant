@@ -200,12 +200,23 @@ class Run extends Controller
     public function test()
     {
         $shortCodes = [
-            '{{sender}}'=> "prappo prince",
-            '{{page_name}}' => "Sinat's shop"
+            "{{sender}}"=> "prappo prince",
+            "{{page_name}}" => "Sinat's shop"
         ];
 
-        $message = "Hi sender welcome to {{page_name}}";
-        echo strtr($message,$shortCodes);
+        $codes = ["{{sender}}","{{page_name}}"];
+        $values = ["Prappo Prince","Sinat's shop"];
+
+        $data['{{email}}'] = 'prappo.prince@gmail.com';
+        $data['{{country}}'] = 'Bangladesh';
+        $arr = [];
+        array_push($arr,$shortCodes,$data);
+
+
+
+
+        $message = "Hi {{sender}} welcome to {{page_name}} {{page_name}}";
+        echo strtr($message,$arr);
 
 
     }

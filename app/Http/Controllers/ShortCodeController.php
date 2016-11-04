@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ShortCode;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,7 +26,7 @@ class ShortCodeController extends Controller
      */
     public function create()
     {
-        //
+        return view('addcode');
     }
 
     /**
@@ -36,7 +37,18 @@ class ShortCodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $code = $request->code;
+        $value = $request->value;
+        try{
+            $shortCode = new ShortCode();
+            $shortCode->code = $code;
+            $shortCode->value = $value;
+            $shortCode->save();
+            return "success";
+        }
+        catch (\Exception $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -70,7 +82,15 @@ class ShortCodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            ShortCode::where('id',$id)->update([
+               'code'=>$request->code,
+                'value'=>$request->value
+            ]);
+            return "success";
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
