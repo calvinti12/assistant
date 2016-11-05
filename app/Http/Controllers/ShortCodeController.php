@@ -16,7 +16,8 @@ class ShortCodeController extends Controller
      */
     public function index()
     {
-        //
+        $datas = ShortCode::all();
+        return view('shortcodelist',compact('datas'));
     }
 
     /**
@@ -101,6 +102,11 @@ class ShortCodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            ShortCode::where('id',$id)->delete();
+            return "success";
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
     }
 }

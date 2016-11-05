@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="question" class="col-md-4 control-label">Comment </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="question" class="form-control">
+                                    <input required type="text" id="question" class="form-control">
 
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label for="comment" class="col-md-4 control-label">Reply </label>
                                 <div class="col-md-6">
-                                    <textarea id="answer" class="form-control" rows="3"></textarea>
+                                    <textarea required id="answer" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
 
