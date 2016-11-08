@@ -27,7 +27,8 @@ class ShortCodeController extends Controller
      */
     public function create()
     {
-        return view('addcode');
+        $datas = ShortCode::paginate(5);
+        return view('addcode',compact('datas'));
     }
 
     /**
@@ -40,6 +41,15 @@ class ShortCodeController extends Controller
     {
         $code = $request->code;
         $value = $request->value;
+        if($code == '{{name}}' || $code == '{{page_name}}'){
+            return "You can't use {{name}} and {{page_name}} keywords because those are being used by system";
+        }
+        if($code == ""){
+            return "Code field can't be empty";
+        }
+        if($value == ""){
+            return "Value can't be empty";
+        }
         try{
             $shortCode = new ShortCode();
             $shortCode->code = $code;

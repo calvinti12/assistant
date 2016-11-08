@@ -17,7 +17,7 @@ class Comments extends Controller
     public function index()
     {
         $datas = \App\Comments::all();
-        return view('commentlist',compact('datas'));
+        return view('commentlist', compact('datas'));
     }
 
     /**
@@ -89,7 +89,15 @@ class Comments extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            \App\Comments::where('id',$id)->update([
+                'question'=>$request->question,
+                'answer'=>$request->answer
+            ]);
+            return "success";
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -100,6 +108,11 @@ class Comments extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            \App\Comments::where('id', $id)->delete();
+            return "success";
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }

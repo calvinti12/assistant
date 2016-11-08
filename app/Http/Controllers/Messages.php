@@ -61,11 +61,9 @@ class Messages extends Controller
             $message->audio = $audio;
             $message->save();
             return "success";
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
-
-
 
 
     }
@@ -101,7 +99,15 @@ class Messages extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            \App\Messages::where('id',$id)->update([
+                'question'=>$request->question,
+                'answer'=>$request->answer
+            ]);
+            return "success";
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -112,6 +118,11 @@ class Messages extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            \App\Messages::where('id', $id)->delete();
+            return "success";
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }

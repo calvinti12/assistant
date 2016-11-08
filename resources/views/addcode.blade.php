@@ -5,45 +5,10 @@
         <div class="row">
 
 
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Available Short codes</div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Code</th>
-                                <th>Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-
-                                <td><kbd>&#123;&#123;name&#125;&#125;</kbd></td>
-                                <td>Sender name who belongs to the messages or comments <span class="label label-default">System</span></td>
-
-                            </tr>
-                            <tr>
-                                <td><kbd>&#123;&#123;page_name&#125;&#125;</kbd></td>
-                                <td>Page name belongs to the messages or comments <span class="label label-default">System</span></td>
-                            </tr>
-                            @foreach(\App\ShortCode::all() as $short)
-                                <tr>
-                                    <td>
-                                        <kbd>{{$short->code}}</kbd>
-                                    </td>
-                                    <td>Sender Name</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="col-md-8">
+
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Add new Short code</div>
                     <div class="panel-body">
@@ -83,6 +48,43 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Available Short codes</div>
+                    <div class="panel-body">
+                        {!! $datas->render() !!}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+
+                                <td><kbd>&#123;&#123;name&#125;&#125;</kbd></td>
+                                <td>Sender name who belongs to the messages or comments <span class="label label-default">System</span></td>
+
+                            </tr>
+                            <tr>
+                                <td><kbd>&#123;&#123;page_name&#125;&#125;</kbd></td>
+                                <td>Page name belongs to the messages or comments <span class="label label-default">System</span></td>
+                            </tr>
+                            @foreach($datas as $short)
+                                <tr>
+                                    <td>
+                                        <kbd>{{$short->code}}</kbd>
+                                    </td>
+                                    <td>{{$short->value}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -104,6 +106,7 @@
                 success: function (data) {
                     if (data == 'success') {
                         swal('Success', 'Shortcode added', 'success');
+                        location.reload();
                     }
                     else {
                         swal('Error', data, 'error');
