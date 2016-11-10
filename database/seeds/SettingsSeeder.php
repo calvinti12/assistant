@@ -34,5 +34,9 @@ class SettingsSeeder extends Seeder
             'key' => 'autoDelete',
             'value'=>'on'
         ]);
+        DB::table('settings')->insert([
+            'key' => 'live',
+            'value'=>'on'
+        ]);
     }
 }

@@ -30,9 +30,34 @@ class Run extends Controller
             $pageId = $input['entry'][0]['id'];
             $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
             $postId = isset($input['entry'][0]['changes'][0]['value']['postId']) ? $input['entry'][0]['changes'][0]['value']['post_id'] : "";
-            $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : "";
-            $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : "";
+            $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : null;
+            $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : null;
             $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id'] : "";
+
+            /*
+             *
+             * Save notification
+             *
+             * */
+
+            if ($verb != null && $item != null) {
+                $content = "";
+
+                if ($verb == "remove") {
+                    $content = "A $item removed form a post ID $fbPostId";
+                } elseif ($verb == "edited") {
+                    $content = "A $item edited on a post ID <kbd>$postId</kbd> <a href='https://facebook.com/$postId' target='_blank'>View here</a>";
+
+                } elseif ($verb == "add") {
+                    if($item == "comment"){
+                        $content = "A new comment added ID $postId";
+                    }
+                }
+
+
+                NotificationController::notify($verb, $content, $item);
+            }
+
 
             if (!FacebookPages::where('pageId', $input['entry'][0]['changes'][0]['value']['sender_id'])->exists()) {
                 $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : "";
@@ -106,26 +131,26 @@ class Run extends Controller
 
                             foreach (Comments::all() as $comment) {
 
-                                similar_text( strtolower($message),strtolower($comment->question), $match);
+                                similar_text(strtolower($message), strtolower($comment->question), $match);
                                 if ($match >= SettingsController::get('match')) {
-                                    echo "Matching ".$match;
+                                    echo "Matching " . $match;
                                     /*
                                      * If this is for public comment
                                      *
                                      * */
-                                    if($comment->type == "public"){
+                                    if ($comment->type == "public") {
                                         /*
                                          * trying to reply
                                          *
                                          * */
 
                                         try {
-                                            if($comment->link != null){
+                                            if ($comment->link != null) {
                                                 echo "comment reply without image";
-                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
-                                            }else{
+                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
+                                            } else {
                                                 echo "comment reply with image";
-                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
+                                                $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId)], SettingsController::getPageToken($pageId));
                                             }
                                             exit;
 
@@ -136,30 +161,29 @@ class Run extends Controller
                                             *
                                             * */
 
-                                                try{
-                                                    if($comment->link != null){
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
-                                                    }else{
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
-                                                    }
-                                                    exit;
-                                                }catch (\Exception $exception){
-                                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer,$sender_name,$pageId)], SettingsController::getPageToken($pageId));
-                                                    exit;
+                                            try {
+                                                if ($comment->link != null) {
+                                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId), 'attachment_url' => $$comment->link], SettingsController::getPageToken($pageId));
+                                                } else {
+                                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId)], SettingsController::getPageToken($pageId));
                                                 }
-
+                                                exit;
+                                            } catch (\Exception $exception) {
+                                                $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId)], SettingsController::getPageToken($pageId));
+                                                exit;
+                                            }
 
 
                                         }
                                     }
 
-                                }else{
+                                } else {
 
                                     /*
                                      * Exception message
                                      *
                                      * */
-                                    $facebook->post($parentId . '/comments', ['message' => "matching $match","attachment_url"=>"http://img.freepik.com/free-vector/company-flyer-with-stripes_1017-3864.jpg"], SettingsController::getPageToken($pageId));
+                                    $facebook->post($parentId . '/comments', ['message' => "matching $match", "attachment_url" => "http://img.freepik.com/free-vector/company-flyer-with-stripes_1017-3864.jpg"], SettingsController::getPageToken($pageId));
 
                                 }
                             }
@@ -197,15 +221,17 @@ class Run extends Controller
      * @param $jsonData
      */
 
-    public function test()
+    public
+    function test()
     {
         $message = "My Email is {{email}}";
-       return SenderController::processText($message,"prappo","");
+        return SenderController::processText($message, "prappo", "");
 
 
     }
 
-    public static function fire($jsonData, $pageId)
+    public
+    static function fire($jsonData, $pageId)
     {
         $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . SettingsController::getPageToken($pageId);
         $ch = curl_init($url);
@@ -217,20 +243,6 @@ class Run extends Controller
 
 
     }
-
-    public function notify($content, $class, $type)
-    {
-        try {
-            $notify = new Notification();
-            $notify->content = $content;
-            $notify->class = $class;
-            $notify->type = $type;
-            $notify->save();
-        } catch (\Exception $exception) {
-        }
-    }
-
-
 
 
 }
