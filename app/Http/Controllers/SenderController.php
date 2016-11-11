@@ -33,7 +33,7 @@ class SenderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class SenderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +55,7 @@ class SenderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +66,8 @@ class SenderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,7 +78,7 @@ class SenderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -86,18 +86,17 @@ class SenderController extends Controller
         //
     }
 
-    public static function processText($message,$sender_name,$pageId){
-//        $shortCodes = [
-//            '{{sender}}'=> $sender_name,
-//            '{{page_name}}' => FacebookPages::where('pageId',$pageId)->value('pageName')
-//        ];
-        $shortCodes['{{sender}}'] = $sender_name;
-        $shortCodes['{{page_name}}'] =FacebookPages::where('pageId',$pageId)->value('pageName');
-        foreach(ShortCode::all() as $short){
+    public static function processText($message, $sender_name, $pageId, $question)
+    {
+
+        foreach (ShortCode::all() as $short) {
             $shortCodes[$short->code] = $short->value;
         }
+        $shortCodes['{{sender}}'] = $sender_name;
+        $shortCodes['{{message}}'] = $question;
+        $shortCodes['{{page_name}}'] = FacebookPages::where('pageId', $pageId)->value('pageName');
 
-        return strtr($message,$shortCodes);
+        return strtr($message, $shortCodes);
 
     }
 }

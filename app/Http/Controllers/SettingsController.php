@@ -34,7 +34,7 @@ class SettingsController extends Controller
                 'default_graph_version' => 'v2.6'
             ]);;
             $fb = $facebook;
-            $permissions = ['pages_messaging', 'publish_actions', 'manage_pages', 'publish_pages'];
+            $permissions = ['pages_messaging', 'publish_actions', 'manage_pages', 'publish_pages','read_page_mailboxes'];
             $helper = $fb->getRedirectLoginHelper();
             $loginUrl = $helper->getLoginUrl(url('') . '/facebook/connect', $permissions);
             $_SESSION['FBRLH_' . 'state'];
@@ -65,6 +65,9 @@ class SettingsController extends Controller
         try {
             Settings::where('key', 'fbAppId')->update(['value' => $request->fbAppId]);
             Settings::where('key', 'fbAppSec')->update(['value' => $request->fbAppSec]);
+            Settings::where('key', 'live')->update(['value' => $request->live]);
+            Settings::where('key', 'match')->update(['value' => $request->match]);
+            FacebookPages::where('pageId',$request->pageId)->update(['exceptionMessage'=>$request->exMsg]);
             return "success";
 
         } catch (\Exception $exception) {
@@ -161,5 +164,13 @@ class SettingsController extends Controller
 
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    public static function getPageName($pageID){
+        return FacebookPages::where('pageId',$pageID)->value('pageName');
+    }
+
+    public function getExMessage(Request $request){
+        return FacebookPages::where('pageId',$request->pageId)->value('exceptionMessage');
     }
 }

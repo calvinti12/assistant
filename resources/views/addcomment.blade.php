@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="replycomment"><img class="reply-img"
                                                                    src="{{url('/images/fb_page.png')}}"/>
-                                        <div class="comment"><a id="clsbtn"></a><a href="#" >Your Page</a>
+                                        <div class="comment"><a id="clsbtn"></a><a id="yourPage" href="#" >Your Page</a>
                                            <c id="pageComment"> Some reply</c>
                                             <div class="likereply"><a href="#">Like</a><a href="#">Reply</a><a href="#"
                                                                                                                id="thumb"><i
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div id="linkDiv" class="form-group">
                                 <label for="link" class="col-md-4 control-label">Image Link </label>
                                 <div class="col-md-6">
                                     <input type="text" id="link" class="form-control">
@@ -128,6 +128,11 @@
 
 @section('js')
     <script>
+        $('#yourPage').html($('#pageId :selected').text());
+        $('#pageId').on('change',function () {
+            $('#yourPage').html($('#pageId :selected').text());
+        });
+
         $('#postIdDiv').hide();
         var specified = "no";
 
@@ -199,11 +204,11 @@
         });
         $('#question').on('keyup',function () {
             $('#userComment').html($(this).val());
-        })
+        });
 
         $('#answer').on('keyup',function () {
             $('#pageComment').html($(this).val());
-        })
+        });
 
         $("#specific").change(function() {
             if(this.checked) {
@@ -213,6 +218,16 @@
                 $('#postIdDiv').hide(200);
                 specified = "no";
             }
+        });
+
+        $('#type').on('change',function () {
+           if($(this).val() == 'private'){
+               $('#linkDiv').hide(200);
+               toastr.info("Remember you can't send image in private reply");
+           }else{
+               $('#linkDiv').show(200);
+
+           }
         });
 
     </script>

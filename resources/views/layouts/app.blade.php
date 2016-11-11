@@ -19,7 +19,9 @@
 
     <link rel="stylesheet" href="{{url('/css/sweetalert.css')}}">
     <link rel="stylesheet" href="{{url('/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('/css/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 
 
     @yield('css')
@@ -32,6 +34,8 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+
     </style>
 </head>
 <body id="app-layout">
@@ -114,8 +118,8 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/comment') }}"><i class="fa fa-btn fa-comment"></i>Reply</a></li>
-                            <li><a href="{{ url('/message') }}"><i class="fa fa-btn fa-envelope"></i>Messsage</a></li>
+                            <li><a href="{{ url('/comment') }}"><i class="fa fa-btn fa-comment"></i>Comment Reply</a></li>
+                            <li><a href="{{ url('/message') }}"><i class="fa fa-btn fa-envelope"></i>Messsage Reply</a></li>
 
                         </ul>
                     </li>
@@ -135,11 +139,17 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <span class="label label-danger">Live</span>
+@if(\App\Http\Controllers\SettingsController::get('live') == 'on')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <span id="live" class="label label-danger animated infinite fadeIn">Live</span> &nbsp; <span
+                        id="liveUpdate">Please wait ... </span>
+            </div>
+        </div>
     </div>
-</div>
+    <br>
+@endif
 @yield('content')
 
 <!-- JavaScripts -->
@@ -151,7 +161,26 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{url('/js/sweetalert.min.js')}}"></script>
 @yield('js')
+
+<script>
+    @if(\App\Http\Controllers\SettingsController::get('live') == 'on')
+
+    function liveUpdate() {
+        $.ajax({
+            type: 'GET',
+            url: '{{url('/notification')}}',
+            data: {},
+            success: function (data) {
+                $('#liveUpdate').html(data);
+            }
+        });
+    }
+    setInterval(liveUpdate, 3000);
+    @endif
+</script>
 </body>
 </html>

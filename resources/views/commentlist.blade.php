@@ -5,7 +5,10 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Comment List</div>
+                    <div class="panel-heading">Comment List<br>
+                        <a class="btn btn-xs btn-primary" href="{{url('/comment/create')}}"><i class="fa fa-plus"></i>
+                            Add new Comment reply</a>
+                    </div>
 
                     <div class="panel-body">
 
@@ -13,9 +16,10 @@
                             <caption>Available reply list</caption>
                             <thead>
                             <tr>
-                                <th>#ID</th>
+
                                 <th>Question</th>
                                 <th>Reply</th>
+                                <th>Image</th>
                                 <th>Specified</th>
                                 <th>Specified Post</th>
                                 <th>Type</th>
@@ -25,9 +29,16 @@
                             <tbody>
                             @foreach($datas as $data)
                                 <tr>
-                                    <td>{{$data->id}}</td>
+
                                     <td>{{$data->question}}</td>
                                     <td>{{$data->answer}}</td>
+                                    <td>
+                                        @if($data->link == 'no')
+                                            No Image
+                                        @else
+                                            <img class="img-thumbnail" src="{{$data->link}}">
+                                        @endif
+                                    </td>
                                     <td>{{$data->specified}}</td>
                                     <td>{{$data->postId}}</td>
                                     <td>{{$data->type}}</td>
@@ -50,6 +61,30 @@
     <script>
 
         $('#list').DataTable();
+        $('.btn-danger').click(function () {
+
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: '{{url('/comment')}}' + "/" + id,
+                type: 'DELETE',
+
+                data: {
+                    '_token': '{{csrf_token()}}'
+                },
+                success: function (data) {
+                    if (data == 'success') {
+                        swal('Success', 'Deleted', 'success');
+                        location.reload();
+                    } else {
+                        swal('Error', data, 'error');
+                    }
+                },
+                error: function (data) {
+                    swal('Error', 'Something went wrong , Check console log', 'error');
+                    console.log(data.responseText);
+                }
+            });
+        });
 
     </script>
 @endsection

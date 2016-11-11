@@ -39,6 +39,9 @@ class Comments extends Controller
      */
     public function store(Request $request)
     {
+        if (\App\Comments::where('question', $request->question)->exists()) {
+            return "This question is already exists";
+        }
         try {
             $comment = new \App\Comments();
             $comment->pageId = $request->pageId;
@@ -49,6 +52,8 @@ class Comments extends Controller
             $comment->type = $request->type;
             if ($request->link != "") {
                 $comment->link = $request->link;
+            } else {
+                $comment->link = "no";
             }
             $comment->save();
 
@@ -89,13 +94,13 @@ class Comments extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            \App\Comments::where('id',$id)->update([
-                'question'=>$request->question,
-                'answer'=>$request->answer
+        try {
+            \App\Comments::where('id', $id)->update([
+                'question' => $request->question,
+                'answer' => $request->answer
             ]);
             return "success";
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }

@@ -38,10 +38,10 @@
                             <hr>
                             @if(\App\FacebookPages::all()->count() >= 0)
                                 <div class="form-group">
-                                    <label for="appId" class="col-md-4 control-label">Exception message for</label>
+                                    <label for="pageId" class="col-md-4 control-label">Exception message for</label>
                                     <div class="col-md-6">
 
-                                        <select class="form-control">
+                                        <select id="pageId" class="form-control">
                                             @foreach(\App\FacebookPages::all() as $page)
                                                 <option value="{{$page->pageId}}">{{$page->pageName}}</option>
                                             @endforeach
@@ -54,11 +54,39 @@
                                     <label for="appId" class="col-md-4 control-label">Exception message</label>
                                     <div class="col-md-6">
 
-                                       <textarea class="form-control" row="3"></textarea>
+                                        <textarea id="exMsg" class="form-control" row="3"></textarea>
 
                                     </div>
                                 </div>
                             @endif
+                            <hr>
+                            <div class="form-group">
+                                <label for="live" class="col-md-4 control-label">Live notification</label>
+                                <div class="col-md-6">
+                                    <input id="liveVal" type="hidden"
+                                           value="{{\App\Http\Controllers\SettingsController::get('live')}}">
+                                    <select id="live" class="form-control">
+
+                                        <option value="on"
+                                                @if(\App\Http\Controllers\SettingsController::get('live')=='on') selected @endif>
+                                            On
+                                        </option>
+                                        <option value="off"
+                                                @if(\App\Http\Controllers\SettingsController::get('live')=='off') selected @endif>
+                                            Off
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="match" class="col-md-4 control-label">Matching percentage</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" id="match"
+                                           value="{{\App\Http\Controllers\SettingsController::get('match')}}">
+
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
@@ -79,6 +107,20 @@
 
 @section('js')
     <script>
+        $.ajax({
+            type: 'POST',
+            url: '{{url('/getexmsg')}}',
+            data: {
+                'pageId': $('#pageId :selected').val(),
+                '_token': '{{csrf_token()}}'
+            },
+            success: function (data) {
+                $('#exMsg').val(data);
+            }
+        });
+        $('#pageId').on('change', function (data) {
+            alert($(this).val());
+        })
 
         $("#uploadimage").on('submit', (function (e) {
             e.preventDefault();
@@ -115,6 +157,10 @@
                 data: {
                     'fbAppId': $('#fbAppId').val(),
                     'fbAppSec': $('#fbAppSec').val(),
+                    'live': $('#liveVal').val(),
+                    'pageId': $('#pageId :selected').val(),
+                    'exMsg': $('#exMsg').val(),
+                    'match': $('#match').val(),
                     '_token': '{{csrf_token()}}'
                 },
                 success: function (data) {
@@ -130,6 +176,9 @@
             });
         });
 
+        $('#live').on('change', function () {
+            $('#liveVal').val($(this).val());
+        });
 
     </script>
 @endsection

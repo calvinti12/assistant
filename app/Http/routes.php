@@ -19,10 +19,13 @@ Route::get('/prappo','Run@test');
 Route::auth();
 
 Route::get('/facebook/connect','FacebookController@fbConnect');
+Route::post('/getexmsg','SettingsController@getExMessage');
 Route::resource('/facebook','FacebookController');
 Route::resource('/settings','SettingsController');
 Route::resource('/comment','Comments');
 Route::resource('/message','Messages');
 Route::resource('/spam','SpamController');
 Route::resource('/code','ShortCodeController');
+Route::resource('/notification','NotificationController');
+
 Route::get('/home', 'HomeController@index');

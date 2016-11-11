@@ -8,7 +8,7 @@
 
 
 
-            <div class="col-md-12">
+            <div class="col-md-12 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Add new Short code</div>
                     <div class="panel-body">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Available Short codes</div>
                     <div class="panel-body">

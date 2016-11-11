@@ -21,7 +21,14 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
+        if (Notification::all()->count() == 0) {
+            return "No notification";
+        } else {
+            $notify = Notification::orderBy('id', 'desc')->first();
+            return $notify->content . " <i class='fa fa-clock-o'></i><b> Time : " . $notify->created_at . "</b>";
+        }
+
+
     }
 
     /**

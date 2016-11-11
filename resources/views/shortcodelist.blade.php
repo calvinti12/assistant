@@ -32,6 +32,12 @@
                                 <td>Page name belongs to the messages or comments</td>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <td><span class="label label-default">System</span></td>
+                                <td><kbd>&#123;&#123;message&#125;&#125;</kbd></td>
+                                <td>Message or Comment of sender</td>
+                                <td></td>
+                            </tr>
                             @foreach($datas as $data)
 
                                 <tr>

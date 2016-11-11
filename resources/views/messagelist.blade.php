@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Message List</div>
+                    <div class="panel-heading">Message List <br><a class="btn btn-primary btn-xs" href="{{url('/message/create')}}"><i class="fa fa-plus"></i> Add new Message reply</a> </div>
 
                     <div class="panel-body">
 
@@ -31,7 +31,7 @@
                                                         class="fa fa-trash"></i> Delete
                                             </button>
                                             <button data-id="{{$data->id}}" data-question="{{$data->question}}"
-                                                    data-answer="{{$data->answer}}" class="btn btn-xs btn-primary"><i
+                                                    data-answer="{{$data->answer}}" class="btn edit btn-xs btn-primary"><i
                                                         class="fa fa-edit"></i> Edit
                                             </button>
                                         </div>
@@ -87,24 +87,26 @@
     <script>
         var dataId = "";
         $('#list').DataTable();
-        $('.btn-primary').click(function () {
+        $('.edit').click(function () {
             var q = $(this).attr('data-question');
             var a = $(this).attr('data-answer');
-            dataId = $(this).attr('data-id');
+            this.dataId = $(this).attr('data-id');
 
 
             $('#question').val(q);
             $('#answer').val(a);
-            $('#messageID').val(dataId);
+            $('#messageID').val(this.dataId);
             $('#editBox').modal();
 
         })
 
         $('.btn-danger').click(function () {
+
             var id = $(this).attr('data-id');
             $.ajax({
+                url: '{{url('/message')}}' + "/" + id,
                 type: 'DELETE',
-                url: '{{url('/message')}}' + "/" + dataId,
+
                 data: {
                     '_token': '{{csrf_token()}}'
                 },
@@ -127,8 +129,10 @@
 
             $.ajax({
                 type: 'PUT',
-                url: '{{url('/message')}}' + "/" + dataId,
+                url: '{{url('/message')}}' + "/" + $('#messageID').val(),
                 data: {
+                    'question':$('#question').val(),
+                    'answer':$('#answer').val(),
                     '_token': '{{csrf_token()}}'
                 },
                 success: function (data) {
