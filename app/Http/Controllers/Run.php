@@ -29,7 +29,7 @@ class Run extends Controller
 
             $pageId = $input['entry'][0]['id'];
             $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
-            $postId = isset($input['entry'][0]['changes'][0]['value']['postId']) ? $input['entry'][0]['changes'][0]['value']['post_id'] : "";
+            $postId = isset($input['entry'][0]['changes'][0]['value']['post_id']) ? $input['entry'][0]['changes'][0]['value']['post_id'] : "";
             $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : null;
             $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : null;
             $field = isset($input['entry'][0]['changes'][0]['field']) ? $input['entry'][0]['changes'][0]['field'] : null;
@@ -138,11 +138,32 @@ class Run extends Controller
                                  *
                                  * */
 
-                                foreach (Comments::all() as $comment) {
+                                foreach (Comments::where('pageId',$pageId)->get() as $comment) {
 
                                     similar_text(strtolower($message), strtolower($comment->question), $match);
                                     if ($match >= SettingsController::get('match')) {
                                         echo "Matching " . $match;
+                                        if ($comment->specified == "yes") {
+                                            if ($comment->postId != $postId) {
+                                                echo "Comment matches but postID didn't match post ID $postId";
+                                                /*
+                                                 * Exception Message
+                                                 *
+                                                 * */
+                                                try {
+                                                    // trying to comment
+
+                                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
+                                                    echo __FILE__ . "[ " . __LINE__ . " ] ";
+
+                                                } catch (\Exception $exception) {
+                                                    // trying to reply
+                                                    echo __FILE__ . "[ " . __LINE__ . " ] ";
+                                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
+                                                }
+                                                exit;
+                                            }
+                                        }
                                         /*
                                          * If this is for public comment
                                          *
@@ -158,13 +179,13 @@ class Run extends Controller
                                                 if ($comment->link != 'no') {
                                                     // comment with image
 
-                                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId.$message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
+                                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
 
 
                                                 } else {
                                                     // comment without image
 
-                                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
 
                                                 }
                                                 exit;
@@ -181,12 +202,12 @@ class Run extends Controller
                                                     if ($comment->link != 'no') {
                                                         // comment with image
 
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
 
                                                     } else {
                                                         // comment without image
 
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
 
                                                     }
                                                     exit;
@@ -194,9 +215,9 @@ class Run extends Controller
                                                 } catch (\Exception $exception) {
 
                                                     if ($comment->link != 'no') {
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message), 'attachment_url' => $comment->link], SettingsController::getPageToken($pageId));
                                                     } else {
-                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                                        $facebook->post($parentId . '/comments', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
                                                     }
 
                                                     exit;
@@ -209,7 +230,7 @@ class Run extends Controller
                                             echo "\n Repling private message \n";
 
                                             try {
-                                                $response = $facebook->post($commentId . '/private_replies', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                                $response = $facebook->post($commentId . '/private_replies', ['message' => SenderController::processText($comment->answer, $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
                                                 print_r($response->getDecodedBody());
                                             } catch (\Exception $exception) {
                                                 return $exception->getMessage();
@@ -232,13 +253,13 @@ class Run extends Controller
                                 try {
                                     // trying to comment
 
-                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'),$sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                    $facebook->post($commentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
                                     echo __FILE__ . "[ " . __LINE__ . " ] ";
 
                                 } catch (\Exception $exception) {
                                     // trying to reply
                                     echo __FILE__ . "[ " . __LINE__ . " ] ";
-                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'),$sender_name, $pageId,$message)], SettingsController::getPageToken($pageId));
+                                    $facebook->post($parentId . '/comments', ['message' => SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_name, $pageId, $message)], SettingsController::getPageToken($pageId));
                                 }
 
                                 echo "Exception message Done";
@@ -266,15 +287,28 @@ class Run extends Controller
 
         }
 
+
+        /*
+         * Messaging
+         *
+         * */
+
+
 //        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
 //        $page = $input['entry'][0]['messaging'][0]['recipient']['id'];
 //        $postback = isset($input['entry'][0]['messaging'][0]['postback']['payload']) ? $input['entry'][0]['messaging'][0]['postback']['payload'] : "nothing";
 //        $catPostBack = isset($input['entry'][0]['messaging'][0]['message']['quick_reply']['payload']) ? $input['entry'][0]['messaging'][0]['message']['quick_reply']['payload'] : "nothing";
-//        $message = isset($input['entry'][0]['messaging'][0]['message']['text']) ? $input['entry'][0]['messaging'][0]['message']['text'] : "nothing";
+        $message = isset($input['entry'][0]['messaging'][0]['message']['text']) ? $input['entry'][0]['messaging'][0]['message']['text'] : "nothing";
 //        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . Data::getToken();
 //        $linking = isset($input['entry'][0]['messaging'][0]['account_linking']['status']) ? $input['entry'][0]['messaging'][0]['account_linking']['status'] : "nothing";
 //
 //        $location = isset($input['entry'][0]['messaging'][0]['message']['attachments'][0]['payload']['coordinates']) ? $input['entry'][0]['messaging'][0]['message']['attachments'][0]['payload']['coordinates'] : "nothing";
+
+
+        if (!empty($input['entry'][0]['messaging'][0]['message']) || isset($input['entry'][0]['messaging'][0]['postback']['payload'])) {
+
+
+        }
 
 
     }
@@ -298,8 +332,7 @@ class Run extends Controller
 
     }
 
-    public
-    static function fire($jsonData, $pageId)
+    public static function fire($jsonData, $pageId)
     {
         $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . SettingsController::getPageToken($pageId);
         $ch = curl_init($url);

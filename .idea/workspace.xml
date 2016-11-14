@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="183" />
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="200" />
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="159" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="344" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="204" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="180" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ade9904-01f7-43a5-9210-c8c4780f7cb7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Comments.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Comments.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Run.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Run.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SenderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SenderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/addcode.blade.php" afterPath="$PROJECT_DIR$/resources/views/addcode.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/addcomment.blade.php" afterPath="$PROJECT_DIR$/resources/views/addcomment.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/commentlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/messagelist.blade.php" afterPath="$PROJECT_DIR$/resources/views/messagelist.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/settings.blade.php" afterPath="$PROJECT_DIR$/resources/views/settings.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/shortcodelist.blade.php" afterPath="$PROJECT_DIR$/resources/views/shortcodelist.blade.php" />
     </list>
@@ -44,43 +38,21 @@
       <file leaf-file-name="Run.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="240" column="114" selection-start-line="240" selection-start-column="114" selection-end-line="240" selection-end-column="114" />
-              <folding>
-                <element signature="e#5428#6095#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+            <state relative-caret-position="343">
+              <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/settings.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="955">
-              <caret line="169" column="21" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
+            <state relative-caret-position="403">
+              <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
               <folding>
-                <marker date="1478883042821" expanded="true" signature="5899:6932" ph="..." />
+                <marker date="1479118127338" expanded="true" signature="6233:7266" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addcomment.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="92" column="45" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="45" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -88,34 +60,49 @@
       <file leaf-file-name="SettingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SettingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
+            <state relative-caret-position="414">
+              <caret line="172" column="32" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Comments.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Comments.php">
+      <file leaf-file-name="ShortCodeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="300">
+              <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shortcodelist.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addcomment.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="71" column="110" selection-start-line="71" selection-start-column="110" selection-end-line="71" selection-end-column="110" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shortcodelist.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/shortcodelist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-156">
-              <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
-              <folding>
-                <element signature="e#1743#1749#0#HTML" expanded="true" />
-                <element signature="e#1749#1755#0#HTML" expanded="true" />
-                <element signature="e#1762#1768#0#HTML" expanded="true" />
-                <element signature="e#1768#1774#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addcode.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/addcode.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,8 +110,8 @@
       <file leaf-file-name="commentlist.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/commentlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
+            <state relative-caret-position="345">
+              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
               <folding>
                 <marker date="1478883212092" expanded="true" signature="2658:3462" ph="..." />
               </folding>
@@ -135,7 +122,7 @@
       <file leaf-file-name="SenderController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SenderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
+            <state relative-caret-position="378">
               <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
               <folding />
             </state>
@@ -181,22 +168,22 @@
         <option value="$PROJECT_DIR$/resources/views/spam.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SpamController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_11_02_122422_create_short_codes_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Messages.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_27_175059_create_notifications_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/SettingsSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/views/addcode.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/messagelist.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SenderController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Comments.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/addcomment.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Run.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SenderController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
         <option value="$PROJECT_DIR$/resources/views/settings.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Comments.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/addcode.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/shortcodelist.blade.php" />
       </list>
     </option>
@@ -245,8 +232,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -507,12 +492,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/test/optimustest/u881875302/public_html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="code&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/shortcodelist.blade.php&#10;comm&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Comments.php&#10;set&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/SettingsController.php&#10;sett&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;addcom&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;app&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;run&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Run.php&#10;commen&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;message&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;comment&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;route&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;se&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;settin&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;routes&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;messag&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;spam&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/spam.blade.php&#10;Spam&#9;null&#9;null&#10;facebookcon&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/FacebookController.php&#10;app.&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;giti&#9;FILE&#9;file:///home/prappo/projects/assistant/.gitignore" />
+    <property name="SearchEverywhereHistoryKey" value="routes&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;settin&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;add&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;run&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Run.php&#10;app&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;code&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/shortcodelist.blade.php&#10;comm&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Comments.php&#10;set&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/SettingsController.php&#10;sett&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;addcom&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;commen&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;message&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;comment&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;route&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;se&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;messag&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;spam&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/spam.blade.php&#10;Spam&#9;null&#9;null&#10;facebookcon&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/FacebookController.php&#10;app.&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;giti&#9;FILE&#9;file:///home/prappo/projects/assistant/.gitignore" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RunManager">
@@ -603,19 +590,22 @@
       <workItem from="1478781062499" duration="6144000" />
       <workItem from="1478795780448" duration="10051000" />
       <workItem from="1478844438670" duration="610000" />
-      <workItem from="1478871836002" duration="11926000" />
+      <workItem from="1478871836002" duration="12522000" />
+      <workItem from="1478930060976" duration="621000" />
+      <workItem from="1479103159585" duration="695000" />
+      <workItem from="1479105733000" duration="9585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136117000" />
+    <option name="totallyTimeSpent" value="147614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24090908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25227273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -664,9 +654,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="64" column="53" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
-          <folding>
-            <element signature="e#5428#6095#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -875,28 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_10_27_175059_create_notifications_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/addcode.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="50" column="49" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -904,14 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FacebookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="112" column="11" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -930,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,6 +915,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
           <caret line="102" column="8" selection-start-line="102" selection-start-column="8" selection-end-line="125" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Comments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="140" column="6" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FacebookController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="71" column="110" selection-start-line="71" selection-start-column="110" selection-end-line="71" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -966,86 +966,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="240" column="114" selection-start-line="240" selection-start-column="114" selection-end-line="240" selection-end-column="114" />
-          <folding>
-            <element signature="e#5428#6095#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SenderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SettingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="92" column="45" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/commentlist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
+        <state relative-caret-position="345">
+          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
           <folding>
             <marker date="1478883212092" expanded="true" signature="2658:3462" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Comments.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SettingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="172" column="32" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+          <folding>
+            <marker date="1479118127338" expanded="true" signature="6233:7266" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SenderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/addcode.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/shortcodelist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
-          <folding>
-            <element signature="e#1743#1749#0#HTML" expanded="true" />
-            <element signature="e#1749#1755#0#HTML" expanded="true" />
-            <element signature="e#1762#1768#0#HTML" expanded="true" />
-            <element signature="e#1768#1774#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/settings.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="955">
-          <caret line="169" column="21" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
-          <folding>
-            <marker date="1478883042821" expanded="true" signature="5899:6932" ph="..." />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

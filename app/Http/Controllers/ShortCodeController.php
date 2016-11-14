@@ -41,8 +41,8 @@ class ShortCodeController extends Controller
     {
         $code = $request->code;
         $value = $request->value;
-        if($code == '{{name}}' || $code == '{{page_name}}'){
-            return "You can't use {{name}} and {{page_name}} keywords because those are being used by system";
+        if($code == '{{sender}}' || $code == '{{page_name}}' || $code == '{{message}}'){
+            return "You can't use {{sender}} , {{page_name}} and {{message}} keywords because those are being used by system";
         }
         if($code == ""){
             return "Code field can't be empty";

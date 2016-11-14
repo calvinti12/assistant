@@ -63,13 +63,18 @@
                             <tbody>
                             <tr>
 
-                                <td><kbd>&#123;&#123;name&#125;&#125;</kbd></td>
+                                <td><kbd>&#123;&#123;sender&#125;&#125;</kbd></td>
                                 <td>Sender name who belongs to the messages or comments <span class="label label-default">System</span></td>
 
                             </tr>
                             <tr>
                                 <td><kbd>&#123;&#123;page_name&#125;&#125;</kbd></td>
                                 <td>Page name belongs to the messages or comments <span class="label label-default">System</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><kbd>&#123;&#123;message&#125;&#125;</kbd></td>
+                                <td>The message sent by sender from comment or message <span class="label label-default">System</span></td>
                             </tr>
                             @foreach($datas as $short)
                                 <tr>

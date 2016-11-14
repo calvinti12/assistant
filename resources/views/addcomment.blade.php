@@ -69,7 +69,7 @@
                             <div id="postIdDiv" class="form-group">
                                 <label for="postId" class="col-md-4 control-label">Post ID </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="postId" class="form-control">
+                                    <input type="text" placeholder="Example : 925072217615350_1036772243112013" id="postId" class="form-control">
 
                                 </div>
                             </div>

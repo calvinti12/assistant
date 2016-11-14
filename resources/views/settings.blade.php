@@ -119,7 +119,17 @@
             }
         });
         $('#pageId').on('change', function (data) {
-            alert($(this).val());
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/getexmsg')}}',
+                data: {
+                    'pageId': $('#pageId :selected').val(),
+                    '_token': '{{csrf_token()}}'
+                },
+                success: function (data) {
+                    $('#exMsg').val(data);
+                }
+            });
         })
 
         $("#uploadimage").on('submit', (function (e) {

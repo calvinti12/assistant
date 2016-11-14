@@ -22,7 +22,7 @@
                             <tbody>
                             <tr>
                                 <td><span class="label label-default">System</span></td>
-                                <td><kbd>&#123;&#123;name&#125;&#125;</kbd></td>
+                                <td><kbd>&#123;&#123;sender&#125;&#125;</kbd></td>
                                 <td>Sender name who belongs to the messages or comments</td>
                                 <td></td>
                             </tr>

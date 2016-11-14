@@ -104,9 +104,9 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/comment/create') }}"><i class="fa fa-btn fa-comment"></i>Reply</a>
+                            <li><a href="{{ url('/comment/create') }}"><i class="fa fa-btn fa-comment"></i>Add Comment Reply</a>
                             </li>
-                            <li><a href="{{ url('/message/create') }}"><i class="fa fa-btn fa-envelope"></i>Messsage</a>
+                            <li><a href="{{ url('/message/create') }}"><i class="fa fa-btn fa-envelope"></i>Add Messsage Reply</a>
                             </li>
 
                         </ul>
@@ -139,7 +139,7 @@
         </div>
     </div>
 </nav>
-@if(\App\Http\Controllers\SettingsController::get('live') == 'on')
+@if(\App\Http\Controllers\SettingsController::get('live') == 'on' && !Auth::guest())
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-md-offset-1">
@@ -167,7 +167,7 @@
 @yield('js')
 
 <script>
-    @if(\App\Http\Controllers\SettingsController::get('live') == 'on')
+    @if(\App\Http\Controllers\SettingsController::get('live') == 'on' && !Auth::guest())
 
     function liveUpdate() {
         $.ajax({
