@@ -99,4 +99,129 @@ class SenderController extends Controller
         return strtr($message, $shortCodes);
 
     }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public static function convertId($id)
+    {
+        if (is_int($id)) {
+            return (string)$id;
+        } else {
+            return $id;
+        }
+    }
+
+    /**
+     * @param $userId
+     * @param $message
+     * @return string
+     */
+
+
+    public static function sendMessage($userId, $message)
+    {
+
+        $data = [
+            "recipient" => [
+                "id" => self::convertId($userId)
+            ],
+            "message" => [
+                "text" => $message
+            ]
+        ];
+        return json_encode($data);
+    }
+
+    /**
+     * @param $userId
+     * @param $imageUrl
+     * @return string
+     */
+    public static function sendImage($userId, $imageUrl)
+    {
+
+        $data = '{
+                    "recipient":{
+                    "id":"' . $userId . '"
+                 },
+                   "message":{
+                   "attachment":{
+                   "type":"image",
+                   "payload":{
+                   "url":"' . $imageUrl . '"
+                    }
+                   }
+                }
+                }';
+        return $data;
+
+    }
+
+    /**
+     * @param $userId
+     * @param $fileLink
+     * @return string
+     */
+    public static function sendFile($userId, $fileLink)
+    {
+
+        $data = [
+            "recipient" => [
+                "id" => self::convertId($userId)
+            ],
+            "message" => [
+                "attachment" => [
+                    "type" => "file",
+                    "payload" => [
+                        "url" => $fileLink
+                    ]
+                ]
+
+            ]
+        ];
+        return json_encode($data);
+    }
+
+    public static function sendAudio($userId, $fileLink)
+    {
+
+        $data = [
+            "recipient" => [
+                "id" => self::convertId($userId)
+            ],
+            "message" => [
+                "attachment" => [
+                    "type" => "audio",
+                    "payload" => [
+                        "url" => $fileLink
+                    ]
+                ]
+
+            ]
+        ];
+        return json_encode($data);
+    }
+
+    public static function sendVideo($userId, $fileLink)
+    {
+
+        $data = [
+            "recipient" => [
+                "id" => self::convertId($userId)
+            ],
+            "message" => [
+                "attachment" => [
+                    "type" => "video",
+                    "payload" => [
+                        "url" => $fileLink
+                    ]
+                ]
+
+            ]
+        ];
+        return json_encode($data);
+    }
+
 }

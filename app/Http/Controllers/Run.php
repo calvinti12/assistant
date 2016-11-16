@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Comments;
 use App\FacebookPages;
+use App\Messages;
 use App\Notification;
 use App\Sender;
 use DateTime;
@@ -21,14 +22,16 @@ class Run extends Controller
 
     public static function now($input)
     {
+        $pageId = $input['entry'][0]['id'];
+        $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
+
         /*
          * Detect Comments and reply to comment
          *
          * */
         if (isset($input['entry'][0]['changes'][0]['value']['comment_id']) && isset($input['entry'][0]['changes'][0]['value']['sender_id'])) {
 
-            $pageId = $input['entry'][0]['id'];
-            $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
+
             $postId = isset($input['entry'][0]['changes'][0]['value']['post_id']) ? $input['entry'][0]['changes'][0]['value']['post_id'] : "";
             $item = isset($input['entry'][0]['changes'][0]['value']['item']) ? $input['entry'][0]['changes'][0]['value']['item'] : null;
             $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : null;
@@ -307,7 +310,14 @@ class Run extends Controller
 
         if (!empty($input['entry'][0]['messaging'][0]['message']) || isset($input['entry'][0]['messaging'][0]['postback']['payload'])) {
 
+            foreach (Messages::where('pageId',$pageId)->get() as $comment) {
 
+                similar_text(strtolower($message), strtolower($comment->question), $match);
+                if ($match >= SettingsController::get('match')) {
+
+                }
+
+            }
         }
 
 
