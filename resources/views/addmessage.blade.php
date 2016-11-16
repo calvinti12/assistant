@@ -90,6 +90,13 @@
 
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="file" class="col-md-4 control-label">File Link </label>
+                                <div class="col-md-6">
+                                    <input type="text" id="file" class="form-control">
+
+                                </div>
+                            </div>
 
 
                             <div class="form-group">
@@ -162,6 +169,7 @@
                     'answer': $('#answer').val(),
                     'image': $('#image').val(),
                     'video': $('#video').val(),
+                    'fileLink': $('#file').val(),
                     'audio': $('#audio').val(),
                     '_token': '{{csrf_token()}}'
                 },

@@ -17,7 +17,8 @@ Route::get('/', function () {
 });
 Route::get('/prappo','Run@test');
 Route::auth();
-
+Route::get('/profile','ProfileController@index');
+Route::post('/profile','ProfileController@update');
 Route::get('/facebook/connect','FacebookController@fbConnect');
 Route::post('/getexmsg','SettingsController@getExMessage');
 Route::resource('/facebook','FacebookController');

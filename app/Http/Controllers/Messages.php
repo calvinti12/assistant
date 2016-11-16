@@ -39,15 +39,24 @@ class Messages extends Controller
      */
     public function store(Request $request)
     {
+
+        if(\App\Messages::where('question',$request->question)->exists()){
+            return "This question already exists";
+        }
         $image = null;
         $video = null;
         $audio = null;
+        $file = null;
         if ($request->image != "") {
             $image = $request->image;
         } elseif ($request->video != "") {
             $video = $request->video;
         } elseif ($request->audio == "") {
-            $audio = $request->video;
+            $audio = $request->audio;
+
+        }
+        elseif ($request->fileLink == "") {
+            $audio = $request->fileLink;
 
         }
 

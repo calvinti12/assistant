@@ -16,10 +16,11 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->string('pageId');
             $table->string('question');
-            $table->string('answer');
+            $table->string('answer')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->string('audio')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

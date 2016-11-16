@@ -24,6 +24,8 @@ class Run extends Controller
     {
         $pageId = $input['entry'][0]['id'];
         $message = isset($input['entry'][0]['changes'][0]['value']['message']) ? $input['entry'][0]['changes'][0]['value']['message'] : "";
+        $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : null;
+        $sender_id = isset($input['entry'][0]['changes'][0]['value']['sender_id']) ? $input['entry'][0]['changes'][0]['value']['sender_id'] : null;
 
         /*
          * Detect Comments and reply to comment
@@ -37,9 +39,6 @@ class Run extends Controller
             $verb = isset($input['entry'][0]['changes'][0]['value']['verb']) ? $input['entry'][0]['changes'][0]['value']['verb'] : null;
             $field = isset($input['entry'][0]['changes'][0]['field']) ? $input['entry'][0]['changes'][0]['field'] : null;
             $fbPostId = isset($input['entry'][0]['changes'][0]['value']['parent_id']) ? $input['entry'][0]['changes'][0]['value']['parent_id'] : "";
-
-            $sender_name = isset($input['entry'][0]['changes'][0]['value']['sender_name']) ? $input['entry'][0]['changes'][0]['value']['sender_name'] : null;
-            $sender_id = isset($input['entry'][0]['changes'][0]['value']['sender_id']) ? $input['entry'][0]['changes'][0]['value']['sender_id'] : null;
 
 
             /*
@@ -141,7 +140,7 @@ class Run extends Controller
                                  *
                                  * */
 
-                                foreach (Comments::where('pageId',$pageId)->get() as $comment) {
+                                foreach (Comments::where('pageId', $pageId)->get() as $comment) {
 
                                     similar_text(strtolower($message), strtolower($comment->question), $match);
                                     if ($match >= SettingsController::get('match')) {
@@ -297,27 +296,33 @@ class Run extends Controller
          * */
 
 
-//        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
-//        $page = $input['entry'][0]['messaging'][0]['recipient']['id'];
-//        $postback = isset($input['entry'][0]['messaging'][0]['postback']['payload']) ? $input['entry'][0]['messaging'][0]['postback']['payload'] : "nothing";
-//        $catPostBack = isset($input['entry'][0]['messaging'][0]['message']['quick_reply']['payload']) ? $input['entry'][0]['messaging'][0]['message']['quick_reply']['payload'] : "nothing";
+        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
         $message = isset($input['entry'][0]['messaging'][0]['message']['text']) ? $input['entry'][0]['messaging'][0]['message']['text'] : "nothing";
-//        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . Data::getToken();
-//        $linking = isset($input['entry'][0]['messaging'][0]['account_linking']['status']) ? $input['entry'][0]['messaging'][0]['account_linking']['status'] : "nothing";
-//
-//        $location = isset($input['entry'][0]['messaging'][0]['message']['attachments'][0]['payload']['coordinates']) ? $input['entry'][0]['messaging'][0]['message']['attachments'][0]['payload']['coordinates'] : "nothing";
-
 
         if (!empty($input['entry'][0]['messaging'][0]['message']) || isset($input['entry'][0]['messaging'][0]['postback']['payload'])) {
 
-            foreach (Messages::where('pageId',$pageId)->get() as $comment) {
+            foreach (Messages::where('pageId', $pageId)->get() as $msg) {
 
-                similar_text(strtolower($message), strtolower($comment->question), $match);
+                similar_text(strtolower($message), strtolower($msg->question), $match);
                 if ($match >= SettingsController::get('match')) {
+                    if($msg->answer != null || $msg->answer != ""){
+                        self::fire(SenderController::sendMessage($sender, SenderController::processText($msg->answer, $sender_name, $pageId, $message)), $pageId);
+                    }
+                    if($msg->image !=null || $msg->image != ""){
+                        self::fire(SenderController::sendImage($sender,$msg->image),$pageId);
+                    }
+                    if($msg->video != null || $msg->video != ""){
+                        self::fire(SenderController::sendVideo($sender,$msg->video),$pageId);
+                    }
+                    if($msg->audio != null || $msg->audio != ""){
+                        self::fire(SenderController::sendAudio($sender,$msg->audio),$pageId);
+                    }
 
+                    exit;
                 }
 
             }
+            self::fire(SenderController::sendMessage($sender, SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_id, $sender_name, $message)), $pageId);
         }
 
 
