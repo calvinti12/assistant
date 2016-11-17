@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +37,12 @@ class SettingsSeeder extends Seeder
         DB::table('settings')->insert([
             'key' => 'live',
             'value'=>'on'
+        ]);
+
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@email.com',
+            'password' => bcrypt('123456'),
         ]);
     }
 }
