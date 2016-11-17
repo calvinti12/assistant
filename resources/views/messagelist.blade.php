@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Message List <br><a class="btn btn-primary btn-xs" href="{{url('/message/create')}}"><i class="fa fa-plus"></i> Add new Message reply</a> </div>
+                    <div class="panel-heading">Message List <br><a class="btn btn-primary btn-xs"
+                                                                   href="{{url('/message/create')}}"><i
+                                    class="fa fa-plus"></i> Add new Message reply</a></div>
 
                     <div class="panel-body">
 
@@ -24,14 +26,34 @@
                                 <tr>
                                     <td>{{$data->id}}</td>
                                     <td>{{$data->question}}</td>
-                                    <td>{{$data->answer}}</td>
+                                    <td>{{$data->answer}}<br>
+                                        @if($data->image != null)
+                                            <image class="comment-img" src="{{$data->image}}">
+                                                @endif
+                                                @if($data->audio != null)
+                                                    <audio controls>
+
+                                                        <source src="{{$data->audio}}" type="audio/mpeg">
+                                                        Your browser does not support the audio element.
+                                                    </audio>
+                                                @endif
+                                                @if($data->video != null)
+                                                    <video width="400" controls>
+                                                        <source src="{{$data->video}}" type="video/mp4">
+
+                                                        Your browser does not support HTML5 video.
+                                                    </video>
+                                        @endif
+
+                                    </td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="...">
                                             <button data-id="{{$data->id}}" class="btn btn-xs btn-danger"><i
                                                         class="fa fa-trash"></i> Delete
                                             </button>
                                             <button data-id="{{$data->id}}" data-question="{{$data->question}}"
-                                                    data-answer="{{$data->answer}}" class="btn edit btn-xs btn-primary"><i
+                                                    data-answer="{{$data->answer}}" class="btn edit btn-xs btn-primary">
+                                                <i
                                                         class="fa fa-edit"></i> Edit
                                             </button>
                                         </div>
@@ -131,8 +153,8 @@
                 type: 'PUT',
                 url: '{{url('/message')}}' + "/" + $('#messageID').val(),
                 data: {
-                    'question':$('#question').val(),
-                    'answer':$('#answer').val(),
+                    'question': $('#question').val(),
+                    'answer': $('#answer').val(),
                     '_token': '{{csrf_token()}}'
                 },
                 success: function (data) {

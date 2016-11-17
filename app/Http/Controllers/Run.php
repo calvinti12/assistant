@@ -296,7 +296,7 @@ class Run extends Controller
          * */
 
 
-        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
+        $sender = isset($input['entry'][0]['messaging'][0]['sender']['id'])?$input['entry'][0]['messaging'][0]['sender']['id']:null;
         $message = isset($input['entry'][0]['messaging'][0]['message']['text']) ? $input['entry'][0]['messaging'][0]['message']['text'] : "nothing";
 
         if (!empty($input['entry'][0]['messaging'][0]['message']) || isset($input['entry'][0]['messaging'][0]['postback']['payload'])) {
@@ -316,6 +316,9 @@ class Run extends Controller
                     }
                     if($msg->audio != null || $msg->audio != ""){
                         self::fire(SenderController::sendAudio($sender,$msg->audio),$pageId);
+                    }
+                    if($msg->file != null || $msg->file != ""){
+                        self::fire(SenderController::sendFile($sender,$msg->file),$pageId);
                     }
 
                     exit;

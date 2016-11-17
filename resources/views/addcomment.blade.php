@@ -90,9 +90,9 @@
                             </div>
 
                             <div id="linkDiv" class="form-group">
-                                <label for="link" class="col-md-4 control-label">Image Link </label>
+                                <label for="link" class="col-md-4 control-label">Media Link </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="link" class="form-control">
+                                    <input type="text" id="link" placeholder="Image or Video link" class="form-control">
 
                                 </div>
                             </div>

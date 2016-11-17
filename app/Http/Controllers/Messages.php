@@ -51,12 +51,12 @@ class Messages extends Controller
             $image = $request->image;
         } elseif ($request->video != "") {
             $video = $request->video;
-        } elseif ($request->audio == "") {
+        } elseif ($request->audio != "") {
             $audio = $request->audio;
 
         }
-        elseif ($request->fileLink == "") {
-            $audio = $request->fileLink;
+        elseif ($request->fileLink != "") {
+            $file = $request->fileLink;
 
         }
 
@@ -68,6 +68,7 @@ class Messages extends Controller
             $message->image = $image;
             $message->video = $video;
             $message->audio = $audio;
+            $message->file = $file;
             $message->save();
             return "success";
         } catch (\Exception $exception) {

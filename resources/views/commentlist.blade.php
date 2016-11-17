@@ -19,7 +19,7 @@
 
                                 <th>Question</th>
                                 <th>Reply</th>
-                                <th>Image</th>
+                                <th>Media</th>
                                 <th>Specified</th>
                                 <th>Specified Post</th>
                                 <th>Type</th>
@@ -34,9 +34,9 @@
                                     <td>{{$data->answer}}</td>
                                     <td>
                                         @if($data->link == 'no')
-                                            No Image
+                                            No Media
                                         @else
-                                            <img class="img-thumbnail" src="{{$data->link}}">
+                                            Yes
                                         @endif
                                     </td>
                                     <td>{{$data->specified}}</td>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="359" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="362" />
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="206" />
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Run.php" line="182" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ade9904-01f7-43a5-9210-c8c4780f7cb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Messages.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Messages.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Run.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Run.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/addmessage.blade.php" afterPath="$PROJECT_DIR$/resources/views/addmessage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/addcomment.blade.php" afterPath="$PROJECT_DIR$/resources/views/addcomment.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/commentlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/messagelist.blade.php" afterPath="$PROJECT_DIR$/resources/views/messagelist.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/spam.blade.php" afterPath="$PROJECT_DIR$/resources/views/spam.blade.php" />
     </list>
     <ignored path="assistant.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,41 +39,29 @@
       <file leaf-file-name="Run.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4665">
-              <caret line="318" column="21" selection-start-line="318" selection-start-column="21" selection-end-line="318" selection-end-column="21" />
+            <state relative-caret-position="248">
+              <caret line="314" column="88" selection-start-line="314" selection-start-column="88" selection-end-line="314" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_10_27_180000_create_messages_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php">
+      <file leaf-file-name="spam.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/spam.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+            <state relative-caret-position="285">
+              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addmessage.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/addmessage.blade.php">
+      <file leaf-file-name="register.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProfileController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="40" column="54" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
-              <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -83,16 +71,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1095">
               <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SenderController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SenderController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2805">
-              <caret line="191" column="48" selection-start-line="191" selection-start-column="48" selection-end-line="191" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -112,17 +90,37 @@
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="178">
-              <caret line="71" column="82" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+              <caret line="63" column="75" selection-start-line="63" selection-start-column="75" selection-end-line="63" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="commentlist.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/commentlist.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addcomment.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="94" column="97" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="945">
+              <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -131,8 +129,8 @@
       <file leaf-file-name="Messages.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+            <state relative-caret-position="630">
+              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -162,17 +160,13 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_10_27_192544_create_comments_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_29_130720_create_spams_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_27_053256_create_facebook_pages_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/spam.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SpamController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_11_02_122422_create_short_codes_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_27_175059_create_notifications_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/SettingsSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" />
-        <option value="$PROJECT_DIR$/resources/views/messagelist.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Comments.php" />
-        <option value="$PROJECT_DIR$/resources/views/addcomment.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/settings.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ShortCodeController.php" />
         <option value="$PROJECT_DIR$/resources/views/addcode.blade.php" />
@@ -181,12 +175,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" />
         <option value="$PROJECT_DIR$/resources/views/profile.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Run.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Messages.php" />
         <option value="$PROJECT_DIR$/resources/views/addmessage.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/resources/views/messagelist.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Messages.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/commentlist.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/addcomment.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Run.php" />
+        <option value="$PROJECT_DIR$/resources/views/spam.blade.php" />
       </list>
     </option>
   </component>
@@ -234,7 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -521,13 +519,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/test/optimustest/u881875302/public_html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;route&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;run&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Run.php&#10;routes&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;settin&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;add&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;code&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/shortcodelist.blade.php&#10;comm&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Comments.php&#10;set&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/SettingsController.php&#10;sett&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;addcom&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;commen&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;message&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;comment&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;se&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;messag&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;spam&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/spam.blade.php&#10;Spam&#9;null&#9;null&#10;facebookcon&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/FacebookController.php&#10;app.&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;giti&#9;FILE&#9;file:///home/prappo/projects/assistant/.gitignore" />
+    <property name="SearchEverywhereHistoryKey" value="spam&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/spam.blade.php&#10;run&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Run.php&#10;add&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;comme&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;app&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;regis&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/auth/register.blade.php&#10;route&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;routes&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/routes.php&#10;settin&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;code&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/shortcodelist.blade.php&#10;comm&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/Comments.php&#10;set&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/SettingsController.php&#10;sett&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;addcom&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/addcomment.blade.php&#10;commen&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;message&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;comment&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/commentlist.blade.php&#10;se&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/settings.blade.php&#10;messag&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/messagelist.blade.php&#10;Spam&#9;null&#9;null&#10;facebookcon&#9;FILE&#9;file:///home/prappo/projects/assistant/app/Http/Controllers/FacebookController.php&#10;app.&#9;FILE&#9;file:///home/prappo/projects/assistant/resources/views/layouts/app.blade.php&#10;giti&#9;FILE&#9;file:///home/prappo/projects/assistant/.gitignore" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RunManager">
@@ -625,19 +624,22 @@
       <workItem from="1479125700074" duration="1812000" />
       <workItem from="1479181328475" duration="531000" />
       <workItem from="1479271870313" duration="5608000" />
-      <workItem from="1479318189995" duration="652000" />
+      <workItem from="1479318189995" duration="4004000" />
+      <workItem from="1479355424146" duration="610000" />
+      <workItem from="1479384171500" duration="608000" />
+      <workItem from="1479388405272" duration="4326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156820000" />
+    <option name="totallyTimeSpent" value="165716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26818183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28181818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -675,13 +677,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/errors/404.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="71" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -823,13 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/spam.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="63" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SpamController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
@@ -892,13 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/messagelist.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="8" selection-start-line="102" selection-start-column="8" selection-end-line="125" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Comments.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -938,13 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="71" column="110" selection-start-line="71" selection-start-column="110" selection-end-line="71" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/shortcodelist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
@@ -956,13 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
           <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/commentlist.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -978,6 +945,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2805">
           <caret line="191" column="48" selection-start-line="191" selection-start-column="48" selection-end-line="191" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/addmessage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2565">
+          <caret line="171" column="25" selection-start-line="171" selection-start-column="21" selection-end-line="171" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/messagelist.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="98" selection-start-line="43" selection-start-column="98" selection-end-line="43" selection-end-column="98" />
           <folding />
         </state>
       </provider>
@@ -1008,34 +999,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4665">
-          <caret line="318" column="21" selection-start-line="318" selection-start-column="21" selection-end-line="318" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_10_27_180000_create_messages_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        <state relative-caret-position="945">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Messages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+        <state relative-caret-position="630">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/addmessage.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1043,15 +1026,39 @@
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
-          <caret line="71" column="82" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+          <caret line="63" column="75" selection-start-line="63" selection-start-column="75" selection-end-line="63" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/commentlist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/addcomment.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="94" column="97" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Run.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="314" column="88" selection-start-line="314" selection-start-column="88" selection-end-line="314" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/spam.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding />
         </state>
       </provider>

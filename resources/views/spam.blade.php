@@ -9,12 +9,6 @@
                     <div class="panel-heading"><i class="fa fa-pie-chart"></i> Statistic</div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item">Detected Spam Comment<span
-                                        class="label pull-right label-danger"> 23</span></li>
-                            <li class="list-group-item">Detected Spam User<span class="label pull-right label-warning"> 324</span>
-                            </li>
-                            <li class="list-group-item">Deleted Spam <span
-                                        class="label pull-right label-success"> 234</span></li>
                             <li class="list-group-item">Comments will be automatically deleted if <kbd>Black listed
                                     words</kbd> fond
                             </li>
