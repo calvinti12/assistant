@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item">Comments will be automatically deleted if <kbd>Black listed
-                                    words</kbd> fond
+                                    words</kbd> found
                             </li>
                             <li class="list-group-item">Comment with <kbd>White listed URLs</kbd> will not be removed
                                 otherwise all comments with URLs will be removed
