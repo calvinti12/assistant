@@ -18,6 +18,7 @@
                                 <th>#ID</th>
                                 <th>Question</th>
                                 <th>Reply</th>
+                                <th>For</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -46,6 +47,7 @@
                                         @endif
 
                                     </td>
+                                    <td>{{\App\FacebookPages::where('pageId',$data->pageId)->value('pageName')}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="...">
                                             <button data-id="{{$data->id}}" class="btn btn-xs btn-danger"><i

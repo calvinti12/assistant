@@ -23,6 +23,7 @@
                                 <th>Specified</th>
                                 <th>Specified Post</th>
                                 <th>Type</th>
+                                <th>For</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -42,6 +43,7 @@
                                     <td>{{$data->specified}}</td>
                                     <td>{{$data->postId}}</td>
                                     <td>{{$data->type}}</td>
+                                    <td>{{\App\FacebookPages::where('pageId',$data->pageId)->value('pageName')}}</td>
                                     <td>
                                         <button data-id="{{$data->id}}" class="btn btn-xs btn-danger"><i
                                                     class="fa fa-trash"></i> Delete
