@@ -8,6 +8,7 @@ use App\FacebookPages;
 use App\Messages;
 use App\Notification;
 use App\Sender;
+use App\Spam;
 use DateTime;
 use DateTimeZone;
 use League\Flysystem\Exception;
@@ -98,19 +99,22 @@ class Run extends Controller
                          *
                          * */
 
-                        if (SettingsController::get('spamDefender') == "on") {
-                            if ($item == 'comment' && $verb == 'add') {
+
+                        if ($item == 'comment' && $verb == 'add') {
+                            if (SettingsController::get('spamDefender') == "on") {
                                 /*
                              * Detect Black listed words
                              *
                              * */
 
                                 if (SettingsController::get('autoDelete') == "on") {
-                                    $words = explode(',', SettingsController::get('words'));
-                                    foreach ($words as $word) {
-                                        if (strpos(strtolower($message), strtolower($word)) !== false) {
-                                            $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
-                                            exit;
+                                    if (SettingsController::get('words') != "") {
+                                        $words = explode(',', SettingsController::get('words'));
+                                        foreach ($words as $word) {
+                                            if (strpos(strtolower($message), strtolower($word)) !== false) {
+                                                $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                                exit;
+                                            }
                                         }
                                     }
 
@@ -119,20 +123,57 @@ class Run extends Controller
                                      * Detect URLs
                                      *
                                      * */
+                                    if (SettingsController::get('urls') != "") {
+                                        if (SpamController::isUrl($message)) {
+                                            $urls = explode(',', SettingsController::get('urls'));
+                                            foreach ($urls as $url) {
+                                                if (strpos(strtolower($message), strtolower($url)) !== false) {
 
-                                    if (SpamController::isUrl($message)) {
-                                        $urls = explode(',', SettingsController::get('urls'));
-                                        foreach ($urls as $url) {
-                                            if (strpos(strtolower($message), strtolower($url)) !== false) {
-
-                                            } else {
-                                                $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
-                                                exit;
+                                                } else {
+                                                    $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                                    exit;
+                                                }
                                             }
                                         }
                                     }
 
 
+                                } else {
+
+                                    /*
+                                     * Log the spams
+                                     * */
+
+                                    if (SettingsController::get('words') != "") {
+                                        $words = explode(',', SettingsController::get('words'));
+                                        foreach ($words as $word) {
+                                            if (strpos(strtolower($message), strtolower($word)) !== false) {
+                                                $spam = new Spam();
+                                                $spam->content = $message;
+                                                $spam->save();
+                                            }
+                                        }
+                                    }
+
+
+                                    /*
+                                     * Detect URLs
+                                     *
+                                     * */
+                                    if (SettingsController::get('urls') != "") {
+                                        if (SpamController::isUrl($message)) {
+                                            $urls = explode(',', SettingsController::get('urls'));
+                                            foreach ($urls as $url) {
+                                                if (strpos(strtolower($message), strtolower($url)) !== false) {
+
+                                                } else {
+                                                    $spam = new Spam();
+                                                    $spam->content = $message;
+                                                    $spam->save();
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
                                 /*
@@ -296,7 +337,7 @@ class Run extends Controller
          * */
 
 
-        $sender = isset($input['entry'][0]['messaging'][0]['sender']['id'])?$input['entry'][0]['messaging'][0]['sender']['id']:null;
+        $sender = isset($input['entry'][0]['messaging'][0]['sender']['id']) ? $input['entry'][0]['messaging'][0]['sender']['id'] : null;
         $message = isset($input['entry'][0]['messaging'][0]['message']['text']) ? $input['entry'][0]['messaging'][0]['message']['text'] : "nothing";
 
         if (!empty($input['entry'][0]['messaging'][0]['message']) || isset($input['entry'][0]['messaging'][0]['postback']['payload'])) {
@@ -305,20 +346,20 @@ class Run extends Controller
 
                 similar_text(strtolower($message), strtolower($msg->question), $match);
                 if ($match >= SettingsController::get('match')) {
-                    if($msg->answer != null || $msg->answer != ""){
+                    if ($msg->answer != null || $msg->answer != "") {
                         self::fire(SenderController::sendMessage($sender, SenderController::processText($msg->answer, $sender_name, $pageId, $message)), $pageId);
                     }
-                    if($msg->image !=null || $msg->image != ""){
-                        self::fire(SenderController::sendImage($sender,$msg->image),$pageId);
+                    if ($msg->image != null || $msg->image != "") {
+                        self::fire(SenderController::sendImage($sender, $msg->image), $pageId);
                     }
-                    if($msg->video != null || $msg->video != ""){
-                        self::fire(SenderController::sendVideo($sender,$msg->video),$pageId);
+                    if ($msg->video != null || $msg->video != "") {
+                        self::fire(SenderController::sendVideo($sender, $msg->video), $pageId);
                     }
-                    if($msg->audio != null || $msg->audio != ""){
-                        self::fire(SenderController::sendAudio($sender,$msg->audio),$pageId);
+                    if ($msg->audio != null || $msg->audio != "") {
+                        self::fire(SenderController::sendAudio($sender, $msg->audio), $pageId);
                     }
-                    if($msg->file != null || $msg->file != ""){
-                        self::fire(SenderController::sendFile($sender,$msg->file),$pageId);
+                    if ($msg->file != null || $msg->file != "") {
+                        self::fire(SenderController::sendFile($sender, $msg->file), $pageId);
                     }
 
                     exit;

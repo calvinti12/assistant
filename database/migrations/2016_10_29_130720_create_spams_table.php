@@ -14,8 +14,7 @@ class CreateSpamsTable extends Migration
     {
         Schema::create('spams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('spamWords');
-            $table->string('listedUrls');
+            $table->string('content');
             $table->timestamps();
         });
     }
