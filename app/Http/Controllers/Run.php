@@ -50,7 +50,7 @@ class Run extends Controller
 
             if ($verb != null && $item != null) {
                 if ($verb == "remove") {
-                    $content = "A $item removed form your page " . SettingsController::getPageName($pageId) . " and post ID <a target='_blank' href='http://facebook.com/$fbPostId'><kbd>$fbPostId</kbd></a>";
+                    $content = "A $item has been removed form your page " . SettingsController::getPageName($pageId) . " and post ID <a target='_blank' href='http://facebook.com/$fbPostId'><kbd>$fbPostId</kbd></a>";
                     NotificationController::notify($verb, $content, $item);
                 } elseif ($verb == "edited") {
 
@@ -112,6 +112,11 @@ class Run extends Controller
                                         $words = explode(',', SettingsController::get('words'));
                                         foreach ($words as $word) {
                                             if (strpos(strtolower($message), strtolower($word)) !== false) {
+
+                                                $spam = new Spam();
+                                                $spam->content = $message;
+                                                $spam->save();
+
                                                 $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
                                                 exit;
                                             }
@@ -123,17 +128,31 @@ class Run extends Controller
                                      * Detect URLs
                                      *
                                      * */
-                                    if (SettingsController::get('urls') != "") {
-                                        if (SpamController::isUrl($message)) {
+
+                                    if (SpamController::isUrl($message)) {
+                                        if (SettingsController::get('urls') != "") {
                                             $urls = explode(',', SettingsController::get('urls'));
                                             foreach ($urls as $url) {
                                                 if (strpos(strtolower($message), strtolower($url)) !== false) {
 
                                                 } else {
+
+                                                    $spam = new Spam();
+                                                    $spam->content = $message;
+                                                    $spam->save();
+
                                                     $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
                                                     exit;
                                                 }
                                             }
+                                        } else {
+
+                                            $spam = new Spam();
+                                            $spam->content = $message;
+                                            $spam->save();
+
+                                            $facebook->delete($commentId, [], SettingsController::getPageToken($pageId));
+                                            exit;
                                         }
                                     }
 
@@ -160,8 +179,9 @@ class Run extends Controller
                                      * Detect URLs
                                      *
                                      * */
-                                    if (SettingsController::get('urls') != "") {
-                                        if (SpamController::isUrl($message)) {
+
+                                    if (SpamController::isUrl($message)) {
+                                        if (SettingsController::get('urls') != "") {
                                             $urls = explode(',', SettingsController::get('urls'));
                                             foreach ($urls as $url) {
                                                 if (strpos(strtolower($message), strtolower($url)) !== false) {
@@ -172,6 +192,10 @@ class Run extends Controller
                                                     $spam->save();
                                                 }
                                             }
+                                        } else {
+                                            $spam = new Spam();
+                                            $spam->content = $message;
+                                            $spam->save();
                                         }
                                     }
                                 }

@@ -39,8 +39,9 @@ class Comments extends Controller
      */
     public function store(Request $request)
     {
-        if (\App\Comments::where('question', $request->question)->exists()) {
-            return "This question is already exists";
+
+        if (\App\Comments::where('question', $request->question)->where('pageId',$request->pageId)->exists()) {
+            return "This question is already exists for this page";
         }
         try {
             $comment = new \App\Comments();

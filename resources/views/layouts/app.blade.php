@@ -88,11 +88,12 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-bug"></i> Spam Defender <span class="caret"></span>
+                            <i class="fa fa-bug"></i> Spam Defender <span class="badge">{{\App\Spam::all()->count()}}</span> <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/spam') }}"><i class="fa fa-btn fa-bug"></i>Spam Defender</a></li>
+                            <li><a href="{{ url('/spam/logs') }}"><i class="fa fa-btn fa-list"></i>Spam Logs <span class="badge">{{\App\Spam::all()->count()}}</span></a></li>
 
 
                         </ul>

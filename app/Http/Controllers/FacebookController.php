@@ -34,7 +34,8 @@ class FacebookController extends Controller
      */
     public function index()
     {
-        //
+        $pages = FacebookPages::all();
+        return view('facebook', compact('pages'));
     }
 
     /**
@@ -66,7 +67,10 @@ class FacebookController extends Controller
      */
     public function show($id)
     {
-        //
+        $datas = $this->facebook->get($id . '/feed?limit=100', SettingsController::getPageToken($id))->getDecodedBody();
+
+        $pages = FacebookPages::all();
+        return view('facebookSingle', compact('pages', 'id', 'datas'));
     }
 
     /**
