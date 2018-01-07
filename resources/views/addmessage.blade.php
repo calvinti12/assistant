@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 {{--message preview section --}}
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">Preview</div>
                     <div class="panel-body">
                         <div class="form-horizontal">
@@ -35,7 +35,7 @@
 
             </div>
             <div class="col-md-8">
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">Add Private Message Conversation</div>
                     <div class="panel-body">
                         <div class="form-horizontal">
@@ -101,7 +101,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="add" class="btn btn-primary">
+                                    <button id="add" class="btn btn-success btn-block">
                                         <i class="fa fa-btn fa-envelope"></i> Add Conversation
                                     </button>
                                 </div>

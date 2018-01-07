@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Message List <br><a class="btn btn-primary btn-xs"
+            <div class="col-md-10">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Message List <br><a class="btn btn-success btn-xs"
                                                                    href="{{url('/message/create')}}"><i
                                     class="fa fa-plus"></i> Add new Message reply</a></div>
 

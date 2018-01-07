@@ -6,7 +6,7 @@
 
             {{--Preview--}}
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">Preview</div>
                     <div class="panel-body">
                         <div class="comment-content">
@@ -41,7 +41,7 @@
 
 
             <div class="col-md-8">
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">Add new reply for comment</div>
                     <div class="panel-body">
                         <div class="form-horizontal">
@@ -70,7 +70,7 @@
                                 <label for="postId" class="col-md-4 control-label">Post ID </label>
                                 <div class="col-md-6">
                                     <input type="text" placeholder="Example : 925072217615350_1036772243112013" id="postId" class="form-control">
-
+                                    <a href="{{url('/facebook')}}" target="_blank">Click here to find your post ID</a>
                                 </div>
                             </div>
 
@@ -111,7 +111,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="add" class="btn btn-primary">
+                                    <button id="add" class="btn btn-success btn-block">
                                         <i class="fa fa-btn fa-comment"></i> Add comment
                                     </button>
                                 </div>

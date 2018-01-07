@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $email = Auth::user()->email;
@@ -18,6 +26,10 @@ class ProfileController extends Controller
         return view('profile', compact('email', 'name'));
     }
 
+    /**
+     * @param Request $re
+     * @return string
+     */
     public function update(Request $re)
     {
         $name = $re->name;

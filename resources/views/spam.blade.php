@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 {{--message preview section --}}
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading"><i class="fa fa-pie-chart"></i> Statistic</div>
                     <div class="panel-body">
                         <ul class="list-group">
@@ -73,7 +73,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="save" class="btn btn-primary">
+                                    <button id="save" class="btn btn-success btn-block">
                                         <i class="fa fa-btn fa-bug"></i> Save
                                     </button>
                                 </div>

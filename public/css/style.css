@@ -1,35 +1,3 @@
-/* CSS for message style*/
-
-*,
-*::before,
-*::after {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    word-wrap: break-word;
-    box-sizing: border-box;
-}
-
-
-
-.message-sent,
-.message-received {
-    clear: both;
-}
-
-.message-sent::before,
-.message-received::before,
-.message-sent::after,
-.message-received::after {
-    content: '';
-    display: table;
-}
-
-header,
-section,
-footer {
-    padding: 2em;
-}
 
 .center {
     max-width: 80em;

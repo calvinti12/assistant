@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+            <div class="col-md-8">
+                <div class="panel panel-success">
                     <div class="panel-heading">Update Profile</div>
                     <div class="panel-body">
                         <div class="form-horizontal">
@@ -45,7 +45,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="update" class="btn btn-primary">
+                                    <button id="update" class="btn btn-success btn-block">
                                         <i class="fa fa-btn fa-save"></i> Update Profile
                                     </button>
                                 </div>

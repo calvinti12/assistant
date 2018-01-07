@@ -9,6 +9,7 @@ use Facebook\Facebook;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -25,6 +26,9 @@ class SettingsController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()){
+            return redirect()->to('/login');
+        }
         session_start();
 
         try {

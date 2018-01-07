@@ -9,6 +9,11 @@ use App\Http\Requests;
 
 class ShortCodeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class ShortCodeController extends Controller
     public function index()
     {
         $datas = ShortCode::all();
-        return view('shortcodelist',compact('datas'));
+        return view('shortcodelist', compact('datas'));
     }
 
     /**
@@ -28,36 +33,35 @@ class ShortCodeController extends Controller
     public function create()
     {
         $datas = ShortCode::paginate(5);
-        return view('addcode',compact('datas'));
+        return view('addcode', compact('datas'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $code = $request->code;
         $value = $request->value;
-        if($code == '{{sender}}' || $code == '{{page_name}}' || $code == '{{message}}'){
+        if ($code == '{{sender}}' || $code == '{{page_name}}' || $code == '{{message}}') {
             return "You can't use {{sender}} , {{page_name}} and {{message}} keywords because those are being used by system";
         }
-        if($code == ""){
+        if ($code == "") {
             return "Code field can't be empty";
         }
-        if($value == ""){
+        if ($value == "") {
             return "Value can't be empty";
         }
-        try{
+        try {
             $shortCode = new ShortCode();
             $shortCode->code = $code;
             $shortCode->value = $value;
             $shortCode->save();
             return "success";
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
@@ -65,7 +69,7 @@ class ShortCodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,7 +80,7 @@ class ShortCodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,19 +91,19 @@ class ShortCodeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        try{
-            ShortCode::where('id',$id)->update([
-               'code'=>$request->code,
-                'value'=>$request->value
+        try {
+            ShortCode::where('id', $id)->update([
+                'code' => $request->code,
+                'value' => $request->value
             ]);
             return "success";
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
@@ -107,15 +111,15 @@ class ShortCodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try{
-            ShortCode::where('id',$id)->delete();
+        try {
+            ShortCode::where('id', $id)->delete();
             return "success";
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }

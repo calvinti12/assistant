@@ -17,6 +17,7 @@ class FacebookController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
 
         $this->facebook = new Facebook([
             'app_id' => SettingsController::get('fbAppId'),

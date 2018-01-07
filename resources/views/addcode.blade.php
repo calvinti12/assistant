@@ -1,15 +1,11 @@
 @extends('layouts.app')
 @section('title','Add Short Code')
 @section('content')
-    <div class="container">
-        <div class="row">
 
 
 
-
-
-            <div class="col-md-12 col-md-offset-1">
-                <div class="panel panel-default">
+            <div class="col-md-12">
+                <div class="panel panel-success">
                     <div class="panel-heading">Add new Short code</div>
                     <div class="panel-body">
                         <div class="form-horizontal">
@@ -37,7 +33,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button id="add" class="btn btn-primary">
+                                    <button id="add" class="btn btn-success btn-block">
                                         <i class="fa fa-btn fa-code"></i> Add Shortcode
                                     </button>
                                 </div>
@@ -48,8 +44,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-md-offset-1">
-                <div class="panel panel-default">
+            <div class="col-md-12">
+                <div class="panel panel-success">
                     <div class="panel-heading">Available Short codes</div>
                     <div class="panel-body">
                         {!! $datas->render() !!}
@@ -90,8 +86,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 @endsection
 
 @section('js')

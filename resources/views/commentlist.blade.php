@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
+            <div class="col-md-10">
+                <div class="panel panel-success">
                     <div class="panel-heading">Comment List<br>
-                        <a class="btn btn-xs btn-primary" href="{{url('/comment/create')}}"><i class="fa fa-plus"></i>
+                        <a class="btn btn-xs btn-success" href="{{url('/comment/create')}}"><i class="fa fa-plus"></i>
                             Add new Comment reply</a>
                     </div>
 
