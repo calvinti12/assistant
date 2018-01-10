@@ -25,7 +25,13 @@ class NotificationController extends Controller
             return "No notification";
         } else {
             $notify = Notification::orderBy('id', 'desc')->first();
-            return $notify->content . " <i class='fa fa-clock-o'></i><b> Time : " . $notify->created_at . "</b>";
+            $icon = "";
+            if($notify->item == "message"){
+                $icon = "<i class='fa fa-envelope'></i>";
+            }elseif ($notify->item == "comment"){
+                $icon = "<i class='fa fa-comment'></i>";
+            }
+            return $icon." ".$notify->content . " <i class='fa fa-clock-o'></i><b> Time : " . $notify->created_at . "</b>";
         }
 
 

@@ -369,6 +369,7 @@ class Run extends Controller
             foreach (Messages::where('pageId', $pageId)->get() as $msg) {
 
                 similar_text(strtolower($message), strtolower($msg->question), $match);
+
                 if ($match >= SettingsController::get('match')) {
                     if ($msg->answer != null || $msg->answer != "") {
                         self::fire(SenderController::sendMessage($sender, SenderController::processText($msg->answer, $sender_name, $pageId, $message)), $pageId);
@@ -386,10 +387,13 @@ class Run extends Controller
                         self::fire(SenderController::sendFile($sender, $msg->file), $pageId);
                     }
 
+                    NotificationController::notify('add', $message, 'message');
+
                     exit;
                 }
 
             }
+            NotificationController::notify('add', $message, 'message');
             self::fire(SenderController::sendMessage($sender, SenderController::processText(FacebookPages::where('pageId', $pageId)->value('exceptionMessage'), $sender_id, $sender_name, $message)), $pageId);
         }
 

@@ -59,4 +59,36 @@
         </div>
         <!-- /.col -->
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="info-box" style="padding: 10px">
+                <span class="label label-danger animated infinite fadeIn"><i class="fa fa-circle"></i> Live Notifications</span>
+                <br>
+                <p id="liveUpdate"></p>
+                <a class="btn btn-success btn-xs" href="{{url('/notifications/all')}}"><i class="fa fa-bell-o"></i> View all Notifications</a>
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{url('/css/animate.css')}}">
+@endsection
+
+@section('js')
+    <script>
+
+        function liveUpdate() {
+            $.ajax({
+                type: 'GET',
+                url: '{{url('/notification')}}',
+                data: {},
+                success: function (data) {
+                    $('#liveUpdate').html(data);
+                }
+            });
+        }
+        setInterval(liveUpdate, 3000);
+    </script>
 @endsection

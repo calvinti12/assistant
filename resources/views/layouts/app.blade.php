@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -21,7 +18,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="{{url('/dist/css/skins/skin-red.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link rel="stylesheet" href="{{url('/css/style.css')}}">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,6 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @yield('css')
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -63,9 +65,9 @@ desired effect
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>V</b>A</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b><i class="fa fa-facebook-square"></i> Virtual</b>Assistant</span>
         </a>
 
         <!-- Header Navbar -->
@@ -82,34 +84,40 @@ desired effect
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
+                            <span class="label label-success">{{\App\Notification::where('item','message')->count()}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 4 messages</li>
+                            <li class="header">You have received {{\App\Notification::where('item','message')->count()}}
+                                messages
+                            </li>
                             <li>
                                 <!-- inner menu: contains the messages -->
                                 <ul class="menu">
-                                    <li><!-- start message -->
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <!-- User Image -->
-                                                <img src="{{url('/images/avatar.png')}}" class="img-circle"
-                                                     alt="User Image">
-                                            </div>
-                                            <!-- Message title and timestamp -->
-                                            <h4>
-                                                Support Team
-                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <!-- The message -->
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <!-- end message -->
+                                    @foreach(\App\Notification::where('item','message')->take(5)->get() as $msg)
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <!-- User Image -->
+                                                    <img src="{{url('/images/avatar.png')}}" class="img-circle"
+                                                         alt="User Image">
+                                                </div>
+                                                <!-- Message title and timestamp -->
+                                                <h4>
+                                                    Facebook Message
+                                                    <small>
+                                                        <i class="fa fa-clock-o"></i> {{\Carbon\Carbon::parse($msg->created_at)->diffForHumans()}}
+                                                    </small>
+                                                </h4>
+                                                <!-- The message -->
+                                                <p>{{$msg->content}}</p>
+                                            </a>
+                                        </li>
+                                @endforeach
+                                <!-- end message -->
                                 </ul>
                                 <!-- /.menu -->
                             </li>
-                            <li class="footer"><a href="#">See All Messages</a></li>
+                            <li class="footer"><a href="{{url('/notifications/message')}}">See All Messages</a></li>
                         </ul>
                     </li>
                     <!-- /.messages-menu -->
@@ -119,22 +127,24 @@ desired effect
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
+                            <span class="label label-warning">{{\App\Notification::count()}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
+                            <li class="header">You have {{\App\Notification::count()}} notifications</li>
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
-                                    <li><!-- start notification -->
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <!-- end notification -->
+                                    @foreach(\App\Notification::take(5)->orderBy('id','desc')->get() as $notification)
+                                        <li><!-- start notification -->
+                                            <a href="#">
+                                                <i class="fa  @if($notification->type == 'remove') text-red fa-facebook-square @elseif($notification->type == "add" && $notification->item == "message") fa fa-comment text-blue  @elseif($notification->type == "add") text-green fa-facebook-square @else text-aqua fa-facebook-square @endif"></i> {{$notification->content}}
+                                            </a>
+                                        </li>
+                                @endforeach
+                                <!-- end notification -->
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">View all</a></li>
+                            <li class="footer"><a href="{{url('/notifications/all')}}">View all</a></li>
                         </ul>
                     </li>
                     <!-- Tasks Menu -->
@@ -159,9 +169,9 @@ desired effect
                                             <!-- The progress bar -->
                                             <div class="progress xs">
                                                 <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                <div class="progress-bar progress-bar-aqua" style="width: 50%"
                                                      role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                >
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
                                             </div>
@@ -416,9 +426,19 @@ desired effect
 <script src="{{url('/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('/dist/js/adminlte.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+@yield('js')
 </body>
 </html>
