@@ -38,7 +38,7 @@ class SettingsController extends Controller
                 'default_graph_version' => 'v2.6'
             ]);;
             $fb = $facebook;
-            $permissions = ['pages_messaging', 'publish_actions', 'manage_pages', 'publish_pages','read_page_mailboxes'];
+            $permissions = ['pages_messaging', 'manage_pages', 'publish_pages','read_page_mailboxes'];
             $helper = $fb->getRedirectLoginHelper();
             $loginUrl = $helper->getLoginUrl(url('') . '/facebook/connect', $permissions);
             $_SESSION['FBRLH_' . 'state'];
